@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Матан · Коллоквиум 1 — теоремы и доказательства</title>
+<style>
+:root{--bg:#f7f6f2;--fg:#1c1c1e;--mut:#6c6c70;--card:#fff;--line:#e4e1d8;--acc:#2f5bd3;--accbg:#e9eefc;--add:#a35f00;--addbg:#fbf0de;--ok:#1d7f46;--okbg:#e3f4ea;--pf:#fafaf7}
+@media (prefers-color-scheme:dark){:root{--bg:#141416;--fg:#ececef;--mut:#9a9aa1;--card:#1e1e21;--line:#2f2f34;--acc:#8aa6ff;--accbg:#232b45;--add:#f0b25c;--addbg:#3a2c16;--ok:#5fd394;--okbg:#17321f;--pf:#19191b}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-text-size-adjust:100%}
+.top{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top .in{max-width:860px;margin:0 auto;padding:10px 16px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.top b{font-size:15px}
+.prog{flex:1;min-width:120px;height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.prog i{display:block;height:100%;width:0;background:var(--ok);transition:width .25s}
+.cnt{font-size:13px;color:var(--mut);font-variant-numeric:tabular-nums}
+.tbtn{font:inherit;font-size:13px;padding:5px 10px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--fg);cursor:pointer}
+.tbtn.on{background:var(--accbg);border-color:var(--acc);color:var(--acc)}
+main{max-width:860px;margin:0 auto;padding:16px 16px 80px}
+h1{font-size:24px;margin:8px 0 4px}
+.lead{color:var(--mut);margin:0 0 14px;font-size:14px}
+.legend{display:flex;gap:8px;flex-wrap:wrap;font-size:13px;margin-bottom:14px}
+.toc{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 22px;padding:0;list-style:none}
+.toc a{display:block;font-size:13px;padding:5px 10px;border-radius:999px;background:var(--card);border:1px solid var(--line);color:var(--fg);text-decoration:none}
+.toc a span{color:var(--mut);margin-left:4px;font-variant-numeric:tabular-nums}
+section{margin:30px 0 0}
+section>h2{font-size:19px;margin:0 0 4px;display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+section>h2 small{font-weight:400;color:var(--mut);font-size:13px;white-space:nowrap}
+.defs{font-size:14px;color:var(--mut);background:var(--card);border:1px dashed var(--line);border-radius:10px;padding:8px 12px;margin:8px 0 12px}
+.defs p{margin:4px 0}
+.it{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:10px 0;transition:opacity .2s}
+.it.done{border-color:color-mix(in srgb,var(--ok) 45%,var(--line))}
+.hd{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap;margin-bottom:4px}
+.no{font-size:12px;color:var(--mut);font-variant-numeric:tabular-nums;min-width:30px}
+.tg{font-size:11.5px;padding:1px 7px;border-radius:6px;background:var(--accbg);color:var(--acc);white-space:nowrap}
+.add .tg{background:var(--addbg);color:var(--add)}
+.nm{font-weight:600}
+.st p,.pf p{margin:6px 0}
+.bar{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+.btn,.chk{font:inherit;font-size:13.5px;padding:6px 12px;border-radius:8px;border:1px solid var(--line);background:transparent;color:var(--fg);cursor:pointer}
+.btn{border-color:var(--acc);color:var(--acc)}
+.chk.on{background:var(--okbg);border-color:var(--ok);color:var(--ok)}
+.pf{display:none;margin-top:10px;padding:10px 12px;background:var(--pf);border-left:3px solid var(--acc);border-radius:0 8px 8px 0;font-size:15px}
+.add .pf{border-left-color:var(--add)}
+.it.open .pf{display:block}
+.pf ol,.pf ul,.st ol,.st ul{margin:6px 0;padding-left:22px}
+.pf li,.st li{margin:3px 0}
+.note{font-size:13.5px;color:var(--mut)}
+.qed{float:right;color:var(--mut)}
+table.tt{border-collapse:collapse;margin:6px 0;font-size:14px}
+table.tt td,table.tt th{border:1px solid var(--line);padding:3px 8px;text-align:center}
+body.hide-done .it.done{display:none}
+body.only-core .it:not(.core){display:none}
+.tg.mn{background:var(--okbg);color:var(--ok)}
+mjx-container[display="true"]{overflow-x:auto;overflow-y:hidden;max-width:100%;padding:2px 0}
+mjx-container{max-width:100%}
+</style>
+<script>
+window.__pend=[];window.__ready=false;
+window.MathJax={
+ tex:{inlineMath:[['$','$']],displayMath:[['$$','$$']]},
+ options:{ignoreHtmlClass:'lazy',enableMenu:false},
+ svg:{fontCache:'global'},
+ startup:{pageReady:function(){return MathJax.startup.defaultPageReady().then(function(){window.__ready=true;var p=window.__pend;window.__pend=[];if(p.length)MathJax.typesetPromise(p).catch(function(){});});}}
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+<div class="top"><div class="in">
+ <b>Коллок 1</b>
+ <div class="prog"><i id="pbar"></i></div>
+ <span class="cnt" id="pcnt">0 / 0</span>
+ <button class="tbtn" id="fcore">Только минимум</button>
+ <button class="tbtn" id="fdone">Скрыть доказанные</button>
+</div></div>
+<main>
+<h1>Матанализ · Коллоквиум 1</h1>
+<p class="lead">Все теоремы и леммы по темам программы. Читаешь формулировку, доказываешь сам на листке, потом открываешь доказательство и сверяешься. Отметка «Доказал» сохраняется в этом браузере.</p>
+<div class="legend"><span class="tg">Лекции §…</span> — из лекций Иванова, ч. 1 <span class="it add" style="display:inline;padding:0;border:0;margin:0;background:none"><span class="tg">★ доп.</span></span> — добавлено для подготовки (типичные задачи третьего вопроса)</div>
+<div class="defs" style="margin-bottom:14px"><p><b>План на вечер перед коллоком.</b> Включи «Только минимум» (41 карточка): это главная теорема каждой темы программы плюс ключевые задачи «верно ли». Сначала прогони определения из серых блоков — они дают 2 балла за устный опрос, и их учить быстрее всего. Потом доказывай минимум по порядку, около 5 минут на карточку. Остальное — если останется время.</p></div>
+<ul class="toc" id="toc"></ul>
+
+<!-- ============ 1 ============ -->
+<section id="s1" data-t="Логика и кванторы">
+<h2>1. Логика и кванторы</h2>
+<div class="defs"><p>Формально доказывать тут почти нечего, но на коллоке спрашивают отрицания определений — это надо уметь писать мгновенно.</p></div>
+
+<div class="it"><div class="hd"><span class="tg">Лекции, Введение</span><span class="nm">Правила отрицания</span></div>
+<div class="st">$$\lnot(\lnot A)\iff A,\qquad \lnot(A\land B)\iff \lnot A\lor\lnot B,$$ $$\lnot(A\lor B)\iff \lnot A\land\lnot B,\qquad \lnot(A\Rightarrow B)\iff A\land\lnot B.$$</div>
+<div class="pf lazy">
+<p>Два высказывания равносильны, если они принимают одинаковые значения при всех наборах значений $A,B$. Наборов всего 4 — проверяем таблицей.</p>
+<p><b>Последнее правило</b> (самое важное — по нему строится отрицание импликации):</p>
+<table class="tt"><tr><th>$A$</th><th>$B$</th><th>$A\Rightarrow B$</th><th>$\lnot(A\Rightarrow B)$</th><th>$\lnot B$</th><th>$A\land\lnot B$</th></tr>
+<tr><td>И</td><td>И</td><td>И</td><td>Л</td><td>Л</td><td>Л</td></tr>
+<tr><td>И</td><td>Л</td><td>Л</td><td>И</td><td>И</td><td>И</td></tr>
+<tr><td>Л</td><td>И</td><td>И</td><td>Л</td><td>Л</td><td>Л</td></tr>
+<tr><td>Л</td><td>Л</td><td>И</td><td>Л</td><td>И</td><td>Л</td></tr></table>
+<p>Столбцы 4 и 6 совпадают. Ключ: импликация ложна ровно в одном случае — посылка истинна, вывод ложен.</p>
+<p><b>Де Морган для «и»:</b> $\lnot(A\land B)$ истинно $\iff$ $A\land B$ ложно $\iff$ хотя бы одно из $A,B$ ложно $\iff$ $\lnot A\lor\lnot B$. Для «или» аналогично: $A\lor B$ ложно $\iff$ оба ложны.</p>
+</div></div>
+
+<div class="it"><div class="hd"><span class="tg">Лекции, Введение</span><span class="nm">Отрицание высказываний с кванторами</span></div>
+<div class="st">$$\lnot\big(\forall x\in X:\ A(x)\big)\iff \exists x\in X:\ \lnot A(x),$$ $$\lnot\big(\exists x\in X:\ A(x)\big)\iff \forall x\in X:\ \lnot A(x).$$</div>
+<div class="pf lazy">
+<p>1) «Неверно, что $A(x)$ выполнено для всех $x\in X$» означает ровно, что есть хотя бы один $x\in X$, для которого $A(x)$ не выполнено.</p>
+<p>2) Второе выводим из первого. Применим первое к условию $\lnot A$: $\lnot(\forall x:\lnot A(x))\iff \exists x:\lnot\lnot A(x)\iff\exists x: A(x)$. Навесим отрицание на обе части: $\forall x:\lnot A(x)\iff\lnot(\exists x:A(x))$.</p>
+<p><b>Алгоритм:</b> идём слева направо, каждый $\forall$ меняем на $\exists$ и наоборот, в конце отрицаем условие.</p>
+<p><b>Ловушка:</b> ограничение на переменную не отрицается. $\lnot(\forall\varepsilon\gt0\ \ldots)$ даёт $\exists\varepsilon\gt0\ \ldots$, а не $\exists\varepsilon\le0$. Ведь $\forall\varepsilon\gt0:P$ — это $\forall\varepsilon\,(\varepsilon\gt0\Rightarrow P)$, а отрицание импликации — это $\varepsilon\gt0\land\lnot P$.</p>
+</div></div>
+
+<div class="it"><div class="hd"><span class="tg">Лекции §2</span><span class="nm">Контрапозиция (основа доказательства от противного)</span></div>
+<div class="st">$(P\Rightarrow Q)\iff(\lnot Q\Rightarrow\lnot P)$.</div>
+<div class="pf lazy">
+<table class="tt"><tr><th>$P$</th><th>$Q$</th><th>$P\Rightarrow Q$</th><th>$\lnot Q$</th><th>$\lnot P$</th><th>$\lnot Q\Rightarrow\lnot P$</th></tr>
+<tr><td>И</td><td>И</td><td>И</td><td>Л</td><td>Л</td><td>И</td></tr>
+<tr><td>И</td><td>Л</td><td>Л</td><td>И</td><td>Л</td><td>Л</td></tr>
+<tr><td>Л</td><td>И</td><td>И</td><td>Л</td><td>И</td><td>И</td></tr>
+<tr><td>Л</td><td>Л</td><td>И</td><td>И</td><td>И</td><td>И</td></tr></table>
+<p>Столбцы 3 и 6 совпадают.</p>
+<p><b>Метод от противного:</b> чтобы доказать $P\Rightarrow Q$, предполагаем $P$ и $\lnot Q$ и приходим к противоречию (например, к $\lnot P$). Это законно, потому что $\lnot(P\Rightarrow Q)\iff P\land\lnot Q$: если $P\land\lnot Q$ невозможно, то $P\Rightarrow Q$ истинно.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп.</span><span class="nm">Отрицания основных определений</span></div>
+<div class="st">Запиши отрицания: (а) $\lim a_n=a$; (б) $\{a_n\}$ сходится; (в) $\{a_n\}$ ограничена; (г) $\{a_n\}$ бесконечно большая; (д) $\{a_n\}$ фундаментальна; (е) $M=\sup A$.</div>
+<div class="pf lazy">
+<p>(а) $\lim a_n\ne a\iff \exists\varepsilon\gt0\ \forall N\ \exists n\ge N:\ |a_n-a|\ge\varepsilon$.</p>
+<p>(б) Не сходится: $\forall a\in\mathbb R\ \exists\varepsilon\gt0\ \forall N\ \exists n\ge N:\ |a_n-a|\ge\varepsilon$.</p>
+<p>(в) Неограничена: $\forall M\in\mathbb R\ \exists n:\ |a_n|\gt M$.</p>
+<p>(г) Не б.б.: $\exists E\gt0\ \forall N\ \exists n\ge N:\ |a_n|\le E$.</p>
+<p>(д) Не фундаментальна: $\exists\varepsilon\gt0\ \forall N\ \exists n\ge N\ \exists m\ge N:\ |a_n-a_m|\ge\varepsilon$.</p>
+<p>(е) $M\ne\sup A$: $\big(\exists a\in A:\ a\gt M\big)\ \lor\ \big(\exists M'\lt M\ \forall a\in A:\ a\le M'\big)$ — либо $M$ не верхняя грань, либо есть меньшая верхняя грань.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп.</span><span class="nm">Кванторы ∀ и ∃ нельзя менять местами</span></div>
+<div class="st">$\exists y\ \forall x:\ P(x,y)\ \Rightarrow\ \forall x\ \exists y:\ P(x,y)$, а обратное в общем случае неверно.</div>
+<div class="pf lazy">
+<p><b>Импликация.</b> Пусть $y_0$ такой, что $\forall x:P(x,y_0)$. Возьмём любой $x$. В качестве $y$ подходит $y_0$ — один и тот же для всех $x$.</p>
+<p><b>Контрпример к обратному.</b> $x,y\in\mathbb N$, $P(x,y)$: «$y\gt x$».</p>
+<ul><li>$\forall x\ \exists y:\ y\gt x$ — истинно, берём $y=x+1$.</li>
+<li>$\exists y\ \forall x:\ y\gt x$ — ложно: для любого $y$ возьмём $x=y$, тогда $y\gt y$ неверно.</li></ul>
+<p>Пример из анализа (лекции, §2): «$\forall a\in A\ \exists M:\ a\le M$» верно для любого множества, а «$\exists M\ \forall a\in A:\ a\le M$» — это ограниченность сверху.</p>
+</div></div>
+</section>
+
+<!-- ============ 2 ============ -->
+<section id="s2" data-t="Индукция и от противного">
+<h2>2. Индукция и от противного. Неравенство Бернулли</h2>
+<div class="defs"><p>Индукция: если $P(1)$ верно и $\forall k\in\mathbb N:\ P(k)\Rightarrow P(k+1)$, то $P(n)$ верно $\forall n\in\mathbb N$.</p></div>
+
+<div class="it"><div class="hd"><span class="tg">Лекции §7, Лемма 1</span><span class="nm">Неравенство Бернулли</span></div>
+<div class="st">$\forall x\ge-1,\ \forall n\in\mathbb N:\quad (1+x)^n\ge 1+nx.$</div>
+<div class="pf lazy">
+<p><b>База</b> $n=1$: $(1+x)^1=1+x=1+1\cdot x$ — равенство, значит $\ge$ выполнено.</p>
+<p><b>Шаг.</b> Пусть $(1+x)^k\ge 1+kx$. Умножим обе части на $1+x$. Это законно и знак неравенства сохраняется, потому что $1+x\ge0$ (вот где нужно условие $x\ge-1$):</p>
+$$(1+x)^{k+1}=(1+x)^k(1+x)\ge(1+kx)(1+x)=1+x+kx+kx^2=1+(k+1)x+kx^2.$$
+<p>Так как $kx^2\ge0$, получаем $(1+x)^{k+1}\ge1+(k+1)x$. По индукции неравенство верно для всех $n$.</p>
+<p class="note">Без $x\ge-1$ неверно: $x=-4,\ n=3$: $(1-4)^3=-27\lt1-12=-11$.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп.</span><span class="nm">Строгое неравенство Бернулли</span></div>
+<div class="st">Если $x\gt-1$, $x\ne0$, $n\ge2$, то $(1+x)^n\gt1+nx$.</div>
+<div class="pf lazy">
+<p><b>База</b> $n=2$: $(1+x)^2=1+2x+x^2\gt1+2x$, так как $x\ne0\Rightarrow x^2\gt0$.</p>
+<p><b>Шаг.</b> Пусть $(1+x)^k\gt1+kx$, $k\ge2$. Умножаем на $1+x\gt0$ — строгое неравенство сохраняется:</p>
+$$(1+x)^{k+1}\gt(1+kx)(1+x)=1+(k+1)x+kx^2\ge1+(k+1)x.$$
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп.</span><span class="nm">Обобщённое неравенство Бернулли</span></div>
+<div class="st">Если $x_1,\dots,x_n\gt-1$ и все одного знака, то $$(1+x_1)(1+x_2)\cdots(1+x_n)\ge1+x_1+x_2+\dots+x_n.$$</div>
+<div class="pf lazy">
+<p>Обозначим $P_k=\prod_{i=1}^k(1+x_i)$, $S_k=\sum_{i=1}^kx_i$. Доказываем $P_k\ge1+S_k$ индукцией.</p>
+<p><b>База:</b> $P_1=1+x_1=1+S_1$.</p>
+<p><b>Шаг.</b> Пусть $P_k\ge1+S_k$. Умножаем на $1+x_{k+1}\gt0$:</p>
+$$P_{k+1}=P_k(1+x_{k+1})\ge(1+S_k)(1+x_{k+1})=1+S_k+x_{k+1}+S_kx_{k+1}=1+S_{k+1}+S_kx_{k+1}.$$
+<p>Все $x_i$ одного знака, значит $S_k$ и $x_{k+1}$ одного знака, поэтому $S_kx_{k+1}\ge0$ и $P_{k+1}\ge1+S_{k+1}$.</p>
+<p class="note">При $x_1=\dots=x_n=x$ получается обычное Бернулли (для $x\gt-1$).</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп.</span><span class="nm">Суммы натуральных чисел и квадратов</span></div>
+<div class="st">$$\sum_{k=1}^n k=\frac{n(n+1)}2,\qquad \sum_{k=1}^n k^2=\frac{n(n+1)(2n+1)}6.$$</div>
+<div class="pf lazy">
+<p><b>Первая.</b> База: $1=\frac{1\cdot2}2$. Шаг: $\frac{n(n+1)}2+(n+1)=\frac{(n+1)(n+2)}2$ — это формула для $n+1$.</p>
+<p><b>Вторая.</b> База: $1=\frac{1\cdot2\cdot3}6$. Шаг: выносим $(n+1)$:</p>
+$$\frac{n(n+1)(2n+1)}6+(n+1)^2=\frac{(n+1)\big(n(2n+1)+6(n+1)\big)}6=\frac{(n+1)(2n^2+7n+6)}6.$$
+<p>Раскладываем: $2n^2+7n+6=(n+2)(2n+3)$ (проверка: $2n^2+3n+4n+6$). Получаем $\frac{(n+1)(n+2)(2(n+1)+1)}6$ — формула для $n+1$.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп.</span><span class="nm">$2^n\gt n$ и $n!\ge2^{n-1}$</span></div>
+<div class="st">Для всех $n\in\mathbb N$: $2^n\gt n$ и $n!\ge2^{n-1}$.</div>
+<div class="pf lazy">
+<p><b>$2^n\gt n$.</b> База: $2\gt1$. Шаг: $2^{k+1}=2\cdot2^k\gt2k=k+k\ge k+1$ (так как $k\ge1$).</p>
+<p><b>$n!\ge2^{n-1}$.</b> База: $1!=1=2^0$. Шаг: $(k+1)!=(k+1)\cdot k!\ge(k+1)\cdot2^{k-1}\ge2\cdot2^{k-1}=2^k$, так как $k+1\ge2$.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп.</span><span class="nm">$\sqrt2$ иррационален</span></div>
+<div class="st">Не существует $q\in\mathbb Q$ с $q^2=2$.</div>
+<div class="pf lazy">
+<p>От противного: пусть $q=\frac mn$, $m,n\in\mathbb N$, и дробь несократима (если $q\lt0$, возьмём $-q$).</p>
+<ol><li>$\frac{m^2}{n^2}=2\Rightarrow m^2=2n^2$, значит $m^2$ чётно.</li>
+<li>Тогда $m$ чётно: если $m=2t+1$, то $m^2=4t^2+4t+1$ нечётно.</li>
+<li>$m=2t\Rightarrow4t^2=2n^2\Rightarrow n^2=2t^2\Rightarrow n$ чётно (по тому же рассуждению).</li></ol>
+<p>И $m$, и $n$ чётны — противоречие с несократимостью.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп.</span><span class="nm">Простых чисел бесконечно много</span></div>
+<div class="st">Множество простых чисел бесконечно.</div>
+<div class="pf lazy">
+<p>От противного: пусть простых конечное число: $p_1,\dots,p_k$. Положим $N=p_1p_2\cdots p_k+1\gt1$.</p>
+<p>У $N$ есть простой делитель $p$ (наименьший делитель $N$, больший 1, прост: иначе у него был бы ещё меньший делитель). Значит, $p=p_i$ для некоторого $i$.</p>
+<p>$p_i\mid N$ и $p_i\mid p_1\cdots p_k$, следовательно, $p_i\mid N-p_1\cdots p_k=1$. Противоречие.</p>
+</div></div>
+</section>
+
+<!-- ============ 3 ============ -->
+<section id="s3" data-t="Комбинаторика">
+<h2>3. Перестановки, размещения, сочетания. Бином Ньютона</h2>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп.</span><span class="nm">Формулы для $P_n$, $A_n^k$, $C_n^k$</span></div>
+<div class="st">$$P_n=n!,\qquad A_n^k=n(n-1)\cdots(n-k+1)=\frac{n!}{(n-k)!},\qquad C_n^k=\frac{A_n^k}{k!}=\frac{n!}{k!\,(n-k)!}.$$
+<p class="note">$P_n$ — упорядочивания $n$ элементов; $A_n^k$ — упорядоченные наборы из $k$ различных элементов $n$-множества; $C_n^k$ — $k$-элементные подмножества.</p></div>
+<div class="pf lazy">
+<p><b>Правило произведения:</b> если первый объект выбирается $a$ способами и при каждом его выборе второй — $b$ способами, то пар ровно $ab$ (пары разбиваются на $a$ групп по $b$). По индукции обобщается на $k$ шагов.</p>
+<p><b>$A_n^k$.</b> На 1-е место — $n$ вариантов, на 2-е — $n-1$ (один элемент занят), …, на $k$-е — $n-(k-1)$. По правилу произведения $A_n^k=n(n-1)\cdots(n-k+1)$. Домножив и поделив на $(n-k)!$, получаем $\frac{n!}{(n-k)!}$.</p>
+<p><b>$P_n$</b> $=A_n^n=n(n-1)\cdots1=n!$.</p>
+<p><b>$C_n^k$.</b> Каждое $k$-подмножество можно упорядочить $P_k=k!$ способами, и каждое размещение получается ровно из одного подмножества (из своего набора элементов). Поэтому $A_n^k=C_n^k\cdot k!$, откуда $C_n^k=\frac{A_n^k}{k!}$.</p>
+</div></div>
+
+<div class="it"><div class="hd"><span class="tg">Лекции гл.3 §3, Лемма 1</span><span class="nm">Свойства биномиальных коэффициентов</span></div>
+<div class="st">1) $C_n^0=C_n^n=1$; &nbsp; 2) $C_n^k+C_n^{k-1}=C_{n+1}^k$ при $1\le k\le n$ (треугольник Паскаля).</div>
+<div class="pf lazy">
+<p>1) $C_n^0=\frac{n!}{0!\,n!}=1$ (так как $0!=1$), аналогично $C_n^n=\frac{n!}{n!\,0!}=1$.</p>
+<p>2) Приводим к общему знаменателю $(n-k+1)!\,k!$, используя $(n-k+1)!=(n-k+1)(n-k)!$ и $k!=k\,(k-1)!$:</p>
+$$C_n^k=\frac{n!}{(n-k)!\,k!}=\frac{n!\,(n-k+1)}{(n-k+1)!\,k!},\qquad C_n^{k-1}=\frac{n!}{(n-k+1)!\,(k-1)!}=\frac{n!\,k}{(n-k+1)!\,k!}.$$
+$$C_n^k+C_n^{k-1}=\frac{n!\,(n-k+1+k)}{(n-k+1)!\,k!}=\frac{(n+1)!}{(n+1-k)!\,k!}=C_{n+1}^k.$$
+</div></div>
+
+<div class="it"><div class="hd"><span class="tg">Лекции гл.3 §3</span><span class="nm">Бином Ньютона</span></div>
+<div class="st">$\forall a,b\in\mathbb R,\ n\in\mathbb N:\quad (a+b)^n=\sum\limits_{k=0}^nC_n^ka^kb^{n-k}.$</div>
+<div class="pf lazy">
+<p><b>База</b> $n=1$: $C_1^0a^0b^1+C_1^1a^1b^0=b+a$.</p>
+<p><b>Шаг.</b> Пусть формула верна для $s$. Тогда</p>
+$$(a+b)^{s+1}=(a+b)\sum_{k=0}^sC_s^ka^kb^{s-k}=\underbrace{\sum_{k=0}^sC_s^ka^{k+1}b^{s-k}}_{(1)}+\underbrace{\sum_{k=0}^sC_s^ka^kb^{s+1-k}}_{(2)}.$$
+<p>В (1) сдвинем индекс $j=k+1$ ($j$ от $1$ до $s+1$): $(1)=\sum_{j=1}^{s+1}C_s^{j-1}a^jb^{s+1-j}$. В (2) переименуем $k\to j$.</p>
+<p>Отдельно выписываем крайние слагаемые: из (1) при $j=s+1$ получаем $C_s^sa^{s+1}=a^{s+1}=C_{s+1}^{s+1}a^{s+1}$; из (2) при $j=0$ получаем $C_s^0b^{s+1}=C_{s+1}^0b^{s+1}$. Для $1\le j\le s$ слагаемые складываются по лемме 1:</p>
+$$\big(C_s^{j-1}+C_s^j\big)a^jb^{s+1-j}=C_{s+1}^ja^jb^{s+1-j}.$$
+<p>Итого $(a+b)^{s+1}=\sum_{j=0}^{s+1}C_{s+1}^ja^jb^{s+1-j}$.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп.</span><span class="nm">Тождества с $C_n^k$</span></div>
+<div class="st">$C_n^k=C_n^{n-k}$; &nbsp; $\sum\limits_{k=0}^nC_n^k=2^n$; &nbsp; $\sum\limits_{k=0}^n(-1)^kC_n^k=0$ при $n\ge1$.</div>
+<div class="pf lazy">
+<p>1) $C_n^{n-k}=\frac{n!}{(n-k)!\,(n-(n-k))!}=\frac{n!}{(n-k)!\,k!}=C_n^k$. Смысл: выбрать $k$ элементов — то же, что выбрать $n-k$ невыбранных.</p>
+<p>2) Бином при $a=b=1$: $2^n=(1+1)^n=\sum C_n^k$. Смысл: число всех подмножеств $n$-множества.</p>
+<p>3) Бином при $a=-1,\ b=1$: $0=(-1+1)^n=\sum(-1)^kC_n^k$.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп.</span><span class="nm">Оценка через бином (ключ к $\sqrt[n]n$ и $\frac{n^2}{2^n}$)</span></div>
+<div class="st">При $x\ge0$, $n\ge2$: $$(1+x)^n\ge1+nx+\frac{n(n-1)}2x^2\ge\frac{n(n-1)}2x^2.$$ И вообще $(1+x)^n\ge C_n^kx^k$ для любого $k\le n$.</div>
+<div class="pf lazy">
+<p>По биному $(1+x)^n=\sum_{k=0}^nC_n^kx^k$. При $x\ge0$ все слагаемые $\ge0$, поэтому если выбросить часть слагаемых, сумма не увеличится. Оставляем $k=0,1,2$: $C_n^0=1$, $C_n^1=n$, $C_n^2=\frac{n(n-1)}2$. Если оставить одно слагаемое с номером $k$, получится вторая оценка.</p>
+</div></div>
+</section>
+
+<!-- ============ 4 ============ -->
+<section id="s4" data-t="Предел, б.м., б.б., отделимые">
+<h2>4. Предел последовательности. Б.м., б.б., ограниченные, отделимые от нуля</h2>
+<div class="defs">
+<p><b>Предел:</b> $\lim a_n=a\iff\forall\varepsilon\gt0\ \exists N\ \forall n\ge N:\ |a_n-a|\lt\varepsilon$. Окрестности: $U_\varepsilon(a)=(a-\varepsilon,a+\varepsilon)$, $U_\varepsilon(+\infty)=(\frac1\varepsilon,+\infty)$, $U_\varepsilon(-\infty)=(-\infty,-\frac1\varepsilon)$.</p>
+<p><b>Ограниченная:</b> $\exists M\gt0\ \forall n:\ |a_n|\le M$. &nbsp; <b>Б.м.:</b> $\lim a_n=0$.</p>
+<p><b>Б.б.:</b> $\forall E\gt0\ \exists N\ \forall n\ge N:\ |a_n|\gt E$ (в лекциях $E=\frac1\varepsilon$). &nbsp; $a_n\to+\infty$: то же, но $a_n\gt E$.</p>
+<p><b>Отделимая от нуля:</b> $\exists c\gt0\ \forall n:\ |a_n|\ge c$. <span class="note">(Иногда «с некоторого номера» — уточни у семинариста.)</span></p>
+<p><b>Шпаргалка «верно ли»:</b> огр.+б.б.=б.б. ✓ · б.б.+б.б. ✗ · б.б.−б.б. ✗ · б.б.×отд.=б.б. ✓ · б.б.×огр. ✗ · б.м.×огр.=б.м. ✓ · б.м.×отд. ✗ · б.м./отд.=б.м. ✓ · б.б./б.м.=б.б. ✓ · б.б.$^{\text{б.б.}}$ ✗ · огр.$^{\text{огр.}}$ ✗ · $\frac1{\text{б.м.}}$=б.б. · $\frac1{\text{б.б.}}$=б.м. · $\frac1{\text{огр.}}$=отд. · $\frac1{\text{отд.}}$=огр.</p>
+</div>
+
+<div class="it"><div class="hd"><span class="tg">Лекции §3, Лемма 1</span><span class="nm">Отделимость окрестностей</span></div>
+<div class="st">Пусть $a,b\in\overline{\mathbb R}$, $a\lt b$. Тогда $\exists\varepsilon\gt0:\ \forall x\in U_\varepsilon(a)\ \forall y\in U_\varepsilon(b):\ x\lt y$. В частности, $U_\varepsilon(a)\cap U_\varepsilon(b)=\varnothing$.</div>
+<div class="pf lazy">
+<p>Четыре случая; в каждом подбираем $\varepsilon$ и показываем $x\lt y$.</p>
+<ol>
+<li>$a,b\in\mathbb R$: $\varepsilon=\frac{b-a}2\gt0$. Тогда $x\lt a+\varepsilon=\frac{a+b}2=b-\varepsilon\lt y$.</li>
+<li>$a\in\mathbb R,\ b=+\infty$: $\varepsilon=\frac1{|a|+1}\in(0,1]$, тогда $U_\varepsilon(+\infty)=(|a|+1,+\infty)$ и $x\lt a+\varepsilon\le a+1\le|a|+1\lt y$.</li>
+<li>$a=-\infty,\ b\in\mathbb R$: $\varepsilon=\frac1{|b|+1}\in(0,1]$, тогда $U_\varepsilon(-\infty)=(-\infty,-|b|-1)$ и $x\lt-|b|-1\le b-1\le b-\varepsilon\lt y$ (здесь $-|b|\le b$ и $\varepsilon\le1$).</li>
+<li>$a=-\infty,\ b=+\infty$: $\varepsilon=1$: $x\lt-1\lt1\lt y$.</li></ol>
+<p>Если бы $z\in U_\varepsilon(a)\cap U_\varepsilon(b)$, то $z\lt z$ — противоречие.</p>
+</div></div>
+
+<div class="it"><div class="hd"><span class="tg">Лекции §3, Теорема 1</span><span class="nm">Единственность предела</span></div>
+<div class="st">Последовательность не может иметь двух различных пределов из $\overline{\mathbb R}$.</div>
+<div class="pf lazy">
+<p>От противного: $a_n\to a$, $a_n\to b$, $a\ne b$. Без ограничения общности $a\lt b$. По лемме 1 найдётся $\varepsilon\gt0$ с $U_\varepsilon(a)\cap U_\varepsilon(b)=\varnothing$.</p>
+<p>По определению предела $\exists N_1\ \forall n\ge N_1:\ a_n\in U_\varepsilon(a)$ и $\exists N_2\ \forall n\ge N_2:\ a_n\in U_\varepsilon(b)$.</p>
+<p>При $n=\max\{N_1,N_2\}$ получаем $a_n\in U_\varepsilon(a)\cap U_\varepsilon(b)=\varnothing$ — противоречие.</p>
+</div></div>
+
+<div class="it"><div class="hd"><span class="tg">Лекции §3, Теорема 2</span><span class="nm">Сходящаяся последовательность ограничена</span></div>
+<div class="st">Если $\lim a_n=a\in\mathbb R$, то $\{a_n\}$ ограничена. <span class="note">Обратное неверно: $(-1)^n$.</span></div>
+<div class="pf lazy">
+<p>Берём $\varepsilon=1$: $\exists N\ \forall n\ge N:\ |a_n-a|\lt1$. Тогда при $n\ge N$:</p>
+$$|a_n|=|(a_n-a)+a|\le|a_n-a|+|a|\lt1+|a|.$$
+<p>Первые $N-1$ членов — конечный набор, у него есть максимум. Положим $M=\max\{|a_1|,\dots,|a_{N-1}|,\ |a|+1\}$.</p>
+<p>При $n\lt N$: $|a_n|\le M$ по определению максимума. При $n\ge N$: $|a_n|\lt|a|+1\le M$. Итого $\forall n:\ |a_n|\le M$.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп. (из лекций §4)</span><span class="nm">Сходящаяся не к нулю отделима от нуля</span></div>
+<div class="st">Если $a_n\to a\ne0$, то $\exists N\ \forall n\ge N:\ |a_n|\gt\frac{|a|}2$; кроме того, при $a\gt0$ выполнено $a_n\gt\frac a2\gt0$ (сохранение знака). Если вдобавок $a_n\ne0$ при всех $n$, то $\{a_n\}$ отделима от нуля.</div>
+<div class="pf lazy">
+<p>Берём $\varepsilon=\frac{|a|}2\gt0$: $\exists N\ \forall n\ge N:\ |a_n-a|\lt\frac{|a|}2$.</p>
+<p>Из $\big||a|-|a_n|\big|\le|a-a_n|$ (§4, лемма 1б) следует $|a_n|\ge|a|-|a_n-a|\gt|a|-\frac{|a|}2=\frac{|a|}2$.</p>
+<p>Знак: если $a\gt0$, то $a_n\gt a-\frac a2=\frac a2$.</p>
+<p>Отделимость при всех $n$: положим $c=\min\{|a_1|,\dots,|a_{N-1}|,\frac{|a|}2\}$. Это минимум конечного набора положительных чисел, поэтому $c\gt0$. При $n\lt N$ $|a_n|\ge c$ по определению минимума, при $n\ge N$ $|a_n|\gt\frac{|a|}2\ge c$.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп.</span><span class="nm">Б.б. ⇒ неограниченная (обратное неверно)</span></div>
+<div class="st">Б.б. последовательность неограничена. Неограниченная не обязана быть б.б.</div>
+<div class="pf lazy">
+<p><b>⇒.</b> От противного: пусть $\{a_n\}$ б.б. и $|a_n|\le M$ при всех $n$. По определению б.б. с $E=M$ найдётся $N$, при котором $|a_N|\gt M$. Противоречие.</p>
+<p><b>Контрпример к обратному:</b> $a_n=n$ при чётных $n$, $a_n=0$ при нечётных.</p>
+<ul><li>Неограничена: для любого $M$ по принципу Архимеда есть чётное $n\gt M$, и $|a_n|=n\gt M$.</li>
+<li>Не б.б.: при $E=1$ для любого $N$ найдётся нечётное $n\ge N$ с $|a_n|=0\le1$ — это отрицание определения б.б.</li></ul>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп. · билет</span><span class="nm">Обратная к б.м. — б.б.</span></div>
+<div class="st">Если $a_n\ne0$ при всех $n$ и $\{a_n\}$ б.м., то $\left\{\frac1{a_n}\right\}$ б.б.</div>
+<div class="pf lazy">
+<p>Берём любое $E\gt0$. Применим определение б.м. с $\varepsilon=\frac1E\gt0$: $\exists N\ \forall n\ge N:\ |a_n|\lt\frac1E$.</p>
+<p>Так как $|a_n|\gt0$, переворачиваем неравенство: $\left|\frac1{a_n}\right|=\frac1{|a_n|}\gt E$ при $n\ge N$. Это определение б.б.</p>
+<p class="note">Условие $a_n\ne0$ нужно, чтобы $\frac1{a_n}$ было определено (у б.м. $a_n=0$ обратной нет).</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп. · билет</span><span class="nm">Обратная к б.б. — б.м.</span></div>
+<div class="st">Если $a_n\ne0$ при всех $n$ и $\{a_n\}$ б.б., то $\left\{\frac1{a_n}\right\}$ б.м.</div>
+<div class="pf lazy">
+<p>Берём любое $\varepsilon\gt0$. Применим определение б.б. с $E=\frac1\varepsilon$: $\exists N\ \forall n\ge N:\ |a_n|\gt\frac1\varepsilon$. Тогда $\left|\frac1{a_n}-0\right|=\frac1{|a_n|}\lt\varepsilon$. Это определение б.м.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп. · билет</span><span class="nm">Обратная к ограниченной — отделима от нуля</span></div>
+<div class="st">Если $a_n\ne0$ при всех $n$ и $\{a_n\}$ ограничена, то $\left\{\frac1{a_n}\right\}$ отделима от нуля.</div>
+<div class="pf lazy">
+<p>Ограниченность: $\exists M\gt0\ \forall n:\ |a_n|\le M$. Так как $|a_n|\gt0$, переворачиваем: $\left|\frac1{a_n}\right|=\frac1{|a_n|}\ge\frac1M$. Значит, $c=\frac1M\gt0$ подходит в определение отделимости.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп. · билет</span><span class="nm">Обратная к отделимой от нуля — ограничена</span></div>
+<div class="st">Если $\{a_n\}$ отделима от нуля, то $\left\{\frac1{a_n}\right\}$ ограничена.</div>
+<div class="pf lazy">
+<p>$\exists c\gt0\ \forall n:\ |a_n|\ge c\gt0$. В частности, $a_n\ne0$, и обратная определена. Тогда $\left|\frac1{a_n}\right|=\frac1{|a_n|}\le\frac1c$ при всех $n$, то есть $M=\frac1c$.</p>
+<p class="note">Если отделимость только «с номера $N$», то оценка $\frac1c$ верна при $n\ge N$. Для первых членов (если они $\ne0$) берём $M=\max\{\frac1{|a_1|},\dots,\frac1{|a_{N-1}|},\frac1c\}$.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп.</span><span class="nm">Б.м. ограничена; б.б. «с номера» отделима от нуля</span></div>
+<div class="st">1) Б.м. последовательность ограничена. 2) Если $\{a_n\}$ б.б., то $\exists N\ \forall n\ge N:\ |a_n|\gt1$. Если ещё $a_n\ne0$ при всех $n$, то $\{a_n\}$ отделима от нуля.</div>
+<div class="pf lazy">
+<p>1) Б.м. сходится (к 0), а сходящаяся ограничена (теорема 2 §3).</p>
+<p>2) Определение б.б. с $E=1$. Для всех $n$: $c=\min\{|a_1|,\dots,|a_{N-1}|,1\}\gt0$ — минимум конечного набора положительных чисел.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп. · билет</span><span class="nm">Ограниченная + б.б. = б.б.</span></div>
+<div class="st">Если $\{a_n\}$ ограничена, а $\{b_n\}$ б.б., то $\{a_n+b_n\}$ б.б.</div>
+<div class="pf lazy">
+<p>$\exists M\gt0\ \forall n:\ |a_n|\le M$. Возьмём любое $E\gt0$. По определению б.б. для $b_n$ с числом $E+M$: $\exists N\ \forall n\ge N:\ |b_n|\gt E+M$.</p>
+<p>Из неравенства треугольника $|b_n|=|(a_n+b_n)-a_n|\le|a_n+b_n|+|a_n|$, значит:</p>
+$$|a_n+b_n|\ge|b_n|-|a_n|\gt(E+M)-M=E\quad(n\ge N).$$
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп. · билет</span><span class="nm">Б.б. + б.б. — б.б.? (нет)</span></div>
+<div class="st">Неверно. <b>Уточнение:</b> если $a_n\to+\infty$ и $b_n\to+\infty$, то $a_n+b_n\to+\infty$ (то же для $-\infty$).</div>
+<div class="pf lazy">
+<p><b>Контрпример:</b> $a_n=n$, $b_n=-n$ — обе б.б., а $a_n+b_n=0$ не б.б.: при $E=1$ все члены $|0|\le1$. Ещё пример: $b_n=-n+(-1)^n$ даёт сумму $(-1)^n$ — даже предела нет.</p>
+<p><b>Доказательство уточнения.</b> Возьмём любое $E\gt0$. Из $a_n\to+\infty$: $\exists N_1\ \forall n\ge N_1:\ a_n\gt E$. Из $b_n\to+\infty$ (с числом $1$): $\exists N_2\ \forall n\ge N_2:\ b_n\gt1\gt0$. При $n\ge\max\{N_1,N_2\}$: $a_n+b_n\gt E+0=E$.</p>
+<p class="note">На самом деле хватает $b_n$, ограниченной снизу: см. «ограниченная + б.б.».</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп. · билет</span><span class="nm">Б.б. − б.б. — б.б.? (нет)</span></div>
+<div class="st">Неверно. <b>Уточнение:</b> если $a_n\to+\infty$, $b_n\to-\infty$, то $a_n-b_n\to+\infty$.</div>
+<div class="pf lazy">
+<p><b>Контрпример:</b> $a_n=b_n=n$, тогда $a_n-b_n=0$.</p>
+<p><b>Уточнение.</b> $b_n\to-\infty\iff-b_n\to+\infty$: $\forall E\ \exists N:\ b_n\lt-E\iff-b_n\gt E$. Тогда $a_n-b_n=a_n+(-b_n)$ — сумма двух последовательностей, стремящихся к $+\infty$, и она $\to+\infty$ по предыдущему пункту.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп. · билет</span><span class="nm">Б.б. × отделимая от нуля = б.б.; б.б. × б.б. = б.б.</span></div>
+<div class="st">1) Если $\{a_n\}$ б.б., а $\{b_n\}$ отделима от нуля, то $\{a_nb_n\}$ б.б. 2) Произведение двух б.б. — б.б.</div>
+<div class="pf lazy">
+<p>1) $\exists c\gt0\ \forall n:\ |b_n|\ge c$. Возьмём любое $E\gt0$. Б.б. с числом $\frac Ec$: $\exists N\ \forall n\ge N:\ |a_n|\gt\frac Ec$. Тогда</p>
+$$|a_nb_n|=|a_n|\,|b_n|\gt\frac Ec\cdot c=E.$$
+<p>2) Для б.б. $b_n$: $\exists N_0\ \forall n\ge N_0:\ |b_n|\gt1$. Возьмём $E\gt0$: $\exists N_1\ \forall n\ge N_1:\ |a_n|\gt E$. При $n\ge\max\{N_0,N_1\}$: $|a_nb_n|\gt E\cdot1=E$.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп. (конспект 2024)</span><span class="nm">Б.б. × сходящаяся к $a\ne0$ = б.б.; мажоранта б.б. — б.б.</span></div>
+<div class="st">1) Если $\{a_n\}$ б.б., $b_n\to b\ne0$, то $\{a_nb_n\}$ б.б. 2) Если $\{x_n\}$ б.б. и $|y_n|\ge|x_n|$ с некоторого номера, то $\{y_n\}$ б.б.</div>
+<div class="pf lazy">
+<p>1) Сходящаяся к $b\ne0$ с некоторого номера $N_0$ удовлетворяет $|b_n|\gt\frac{|b|}2$ (отделимость, пункт выше). Возьмём $E\gt0$: $\exists N_1\ \forall n\ge N_1:\ |a_n|\gt\frac{2E}{|b|}$. При $n\ge\max\{N_0,N_1\}$: $|a_nb_n|\gt\frac{2E}{|b|}\cdot\frac{|b|}2=E$.</p>
+<p>2) $|y_n|\ge|x_n|$ при $n\ge N_0$. Для $E\gt0$: $\exists N_1\ \forall n\ge N_1:\ |x_n|\gt E$. При $n\ge\max\{N_0,N_1\}$: $|y_n|\ge|x_n|\gt E$.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп. · билет</span><span class="nm">Б.б. × ограниченная — б.б.? (нет)</span></div>
+<div class="st">Неверно. <b>Уточнение:</b> заменить «ограниченная» на «отделимая от нуля» — тогда верно (предыдущий пункт).</div>
+<div class="pf lazy">
+<p><b>Контрпример:</b> $a_n=n$ (б.б.), $b_n=\frac1n$ (ограничена: $|b_n|\le1$). Тогда $a_nb_n=1$ — не б.б. Ещё проще: $b_n=0$.</p>
+<p><b>Почему так:</b> ограниченная может «гасить» рост, если она стремится к нулю. Отделимость от нуля как раз запрещает $b_n$ приближаться к нулю. Доказательство — в пункте «б.б. × отделимая».</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп. · билет</span><span class="nm">Б.м. × отделимая от нуля — б.м.? (нет)</span></div>
+<div class="st">Неверно. <b>Уточнение:</b> б.м. × ограниченная = б.м. (лемма 3 §4, раздел 5).</div>
+<div class="pf lazy">
+<p><b>Контрпример:</b> $a_n=\frac1n$ (б.м.), $b_n=n$ (отделима: $|b_n|\ge1$). Тогда $a_nb_n=1\not\to0$.</p>
+<p><b>Уточнение:</b> если $|b_n|\le M$, то $|a_nb_n|\le M|a_n|$. Для $\varepsilon\gt0$ берём $N$ с $|a_n|\lt\frac\varepsilon M$ при $n\ge N$, тогда $|a_nb_n|\lt\varepsilon$. Полное доказательство — лемма 3 в разделе 5.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп. · билет</span><span class="nm">Б.м. / отделимая от нуля = б.м.</span></div>
+<div class="st">Если $\{a_n\}$ б.м., $\{b_n\}$ отделима от нуля, то $\left\{\frac{a_n}{b_n}\right\}$ б.м.</div>
+<div class="pf lazy">
+<p>$\exists c\gt0\ \forall n:\ |b_n|\ge c$, поэтому $\left|\frac{a_n}{b_n}\right|\le\frac{|a_n|}c$.</p>
+<p>Возьмём $\varepsilon\gt0$. Б.м. с числом $c\varepsilon\gt0$: $\exists N\ \forall n\ge N:\ |a_n|\lt c\varepsilon$. Тогда $\left|\frac{a_n}{b_n}\right|\lt\frac{c\varepsilon}c=\varepsilon$.</p>
+<p class="note">Короче: $\frac1{b_n}$ ограничена (обратная к отделимой), а б.м. × огр. = б.м.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп. · билет</span><span class="nm">Б.б. / б.м. = б.б. (верно)</span></div>
+<div class="st">Если $\{a_n\}$ б.б., $\{b_n\}$ б.м. и $b_n\ne0$ при всех $n$, то $\left\{\frac{a_n}{b_n}\right\}$ б.б.</div>
+<div class="pf lazy">
+<p>Возьмём любое $E\gt0$.</p>
+<ul><li>б.б. с числом $1$: $\exists N_1\ \forall n\ge N_1:\ |a_n|\gt1$;</li>
+<li>б.м. с числом $\frac1E$: $\exists N_2\ \forall n\ge N_2:\ 0\lt|b_n|\lt\frac1E$.</li></ul>
+<p>При $n\ge\max\{N_1,N_2\}$: $\left|\frac{a_n}{b_n}\right|=\frac{|a_n|}{|b_n|}\gt\frac1{1/E}=E$.</p>
+<p class="note">Иначе: $\frac1{b_n}$ б.б. (обратная к б.м.), и б.б. × б.б. = б.б.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп.</span><span class="nm">Неопределённости: б.м./б.м., б.б./б.б., б.б.×б.м.</span></div>
+<div class="st">Про $\frac{\text{б.м.}}{\text{б.м.}}$, $\frac{\text{б.б.}}{\text{б.б.}}$, $\text{б.б.}\cdot\text{б.м.}$ в общем случае ничего сказать нельзя: результат может быть б.м., б.б., сходиться к ненулевому числу или не иметь предела.</div>
+<div class="pf lazy">
+<p>Достаточно предъявить примеры на каждый случай:</p>
+<ul>
+<li>$\frac{\text{б.м.}}{\text{б.м.}}$: $\frac{1/n}{1/n}=1$; $\frac{1/n^2}{1/n}=\frac1n\to0$; $\frac{1/n}{1/n^2}=n$ — б.б.; $\frac{(-1)^n/n}{1/n}=(-1)^n$ — нет предела.</li>
+<li>$\frac{\text{б.б.}}{\text{б.б.}}$: $\frac nn=1$; $\frac n{n^2}\to0$; $\frac{n^2}n=n$; $\frac{(-1)^nn}n=(-1)^n$.</li>
+<li>$\text{б.б.}\cdot\text{б.м.}$: $n\cdot\frac1n=1$; $n\cdot\frac1{n^2}\to0$; $n^2\cdot\frac1n=n$; $n\cdot\frac{(-1)^n}n=(-1)^n$.</li></ul>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп. · билет</span><span class="nm">Б.б. в степени б.б. — б.б.? (нет)</span></div>
+<div class="st">Пусть $a_n\gt0$ (чтобы степень была определена). Неверно. <b>Уточнение:</b> если $a_n\to+\infty$ и $b_n\to+\infty$, то $a_n^{b_n}\to+\infty$.</div>
+<div class="pf lazy">
+<p><b>Контрпример:</b> $a_n=n$, $b_n=-n$ (обе б.б.). Тогда $a_n^{b_n}=\frac1{n^n}\le\frac1n\to0$ — б.м., а не б.б.</p>
+<p><b>Уточнение.</b> Заметим: при $a_n\gt0$ б.б. означает именно $a_n\to+\infty$, поэтому всё дело в знаке показателя. Возьмём любое $E\gt0$ и положим $E'=\max\{E,1\}$.</p>
+<ul><li>$\exists N_1\ \forall n\ge N_1:\ a_n\gt E'\ge1$;</li>
+<li>$\exists N_2\ \forall n\ge N_2:\ b_n\gt1$.</li></ul>
+<p>При $n\ge\max\{N_1,N_2\}$ основание $a_n\gt1$, а функция $x\mapsto a^x$ при $a\gt1$ возрастает. Поэтому $a_n^{b_n}\gt a_n^1\gt E'\ge E$.</p>
+<p class="note">Если $b_n\to-\infty$, то $a_n^{b_n}=\frac1{a_n^{-b_n}}\to0$: обратная к б.б. — б.м.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп. · билет</span><span class="nm">Ограниченная в степени ограниченной — ограничена? (нет)</span></div>
+<div class="st">Пусть $a_n\gt0$. Неверно. <b>Уточнение:</b> если $0\lt c\le a_n\le M$ (ограничена и отделима от нуля) и $|b_n|\le K$, то $a_n^{b_n}$ ограничена.</div>
+<div class="pf lazy">
+<p><b>Контрпример:</b> $a_n=\frac1n\in(0,1]$, $b_n=-1$ — обе ограничены, а $a_n^{b_n}=n$ неограничена.</p>
+<p><b>Уточнение.</b> Всегда $a_n^{b_n}\gt0$. Оценим сверху, разобрав два случая.</p>
+<ul><li>$a_n\ge1$: функция $x\mapsto a_n^x$ неубывает, $b_n\le K$, поэтому $a_n^{b_n}\le a_n^K\le M^K$ (так как $t\mapsto t^K$ возрастает при $t\gt0$, а $a_n\le M$).</li>
+<li>$a_n\lt1$: $a_n^{b_n}=\left(\frac1{a_n}\right)^{-b_n}$, где $\frac1{a_n}\gt1$ и $-b_n\le K$. Поэтому $a_n^{b_n}\le\left(\frac1{a_n}\right)^K\le\left(\frac1c\right)^K$.</li></ul>
+<p>Итого $0\lt a_n^{b_n}\le\max\{M^K,c^{-K}\}$ при всех $n$.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп.</span><span class="nm">Конечное число членов не влияет на предел</span></div>
+<div class="st">Если $b_n=a_n$ при всех $n\ge K$, то $\{b_n\}$ имеет предел тогда и только тогда, когда его имеет $\{a_n\}$, и пределы равны. В частности, $\lim a_{n+1}=\lim a_n$.</div>
+<div class="pf lazy">
+<p>Пусть $a_n\to A$. Для любого $\varepsilon\gt0$: $\exists N\ \forall n\ge N:\ a_n\in U_\varepsilon(A)$. Положим $N'=\max\{N,K\}$. При $n\ge N'$: $b_n=a_n\in U_\varepsilon(A)$. В обратную сторону — симметрично.</p>
+<p>Сдвиг: $c_n=a_{n+1}$ — это подпоследовательность с $n_k=k+1$, она сходится к тому же пределу (раздел 11).</p>
+</div></div>
+</section>
+
+<!-- ============ 5 ============ -->
+<section id="s5" data-t="Арифметика пределов">
+<h2>5. Арифметические свойства предела</h2>
+<div class="defs"><p>Ключевой факт: $\lim a_n=a\iff\{a_n-a\}$ — б.м. (это просто переписанное определение). В этом разделе пределы конечные.</p></div>
+
+<div class="it"><div class="hd"><span class="tg">Лекции §4, Лемма 1</span><span class="nm">Неравенство треугольника</span></div>
+<div class="st">а) $|a+b|\le|a|+|b|$; &nbsp; б) $\big||a|-|b|\big|\le|a-b|$.</div>
+<div class="pf lazy">
+<p>Из определения модуля: $x\le|x|$ и $-x\le|x|$ для любого $x$.</p>
+<p>а) Если $a+b\ge0$: $|a+b|=a+b\le|a|+|b|$. Если $a+b\lt0$: $|a+b|=-a-b=(-a)+(-b)\le|a|+|b|$.</p>
+<p>б) $|a|=|(a-b)+b|\le|a-b|+|b|$, значит $|a|-|b|\le|a-b|$. Меняя ролями $a$ и $b$: $|b|-|a|\le|b-a|=|a-b|$. Число и противоположное ему не больше $|a-b|$, значит и модуль: $\big||a|-|b|\big|\le|a-b|$.</p>
+</div></div>
+
+<div class="it"><div class="hd"><span class="tg">Лекции §4, Лемма 2</span><span class="nm">Сумма и разность б.м. — б.м.</span></div>
+<div class="st">Если $\{a_n\},\{b_n\}$ — б.м., то $\{a_n\pm b_n\}$ — б.м.</div>
+<div class="pf lazy">
+<p>Возьмём $\varepsilon\gt0$. Применим определения с числом $\frac\varepsilon2\gt0$ (это законно: определение работает для любого положительного числа):</p>
+<p>$\exists N_1\ \forall n\ge N_1:\ |a_n|\lt\frac\varepsilon2$, &nbsp; $\exists N_2\ \forall n\ge N_2:\ |b_n|\lt\frac\varepsilon2$.</p>
+<p>При $n\ge N=\max\{N_1,N_2\}$ по неравенству треугольника ($|a_n-b_n|=|a_n+(-b_n)|\le|a_n|+|b_n|$):</p>
+$$|a_n\pm b_n|\le|a_n|+|b_n|\lt\tfrac\varepsilon2+\tfrac\varepsilon2=\varepsilon.$$
+</div></div>
+
+<div class="it"><div class="hd"><span class="tg">Лекции §4, Теорема 1</span><span class="nm">Предел суммы и разности</span></div>
+<div class="st">Если $a_n\to a$, $b_n\to b$ ($a,b\in\mathbb R$), то $a_n\pm b_n\to a\pm b$.</div>
+<div class="pf lazy">
+<p>$\{a_n-a\}$ и $\{b_n-b\}$ — б.м. По лемме 2 б.м. и $(a_n-a)\pm(b_n-b)=(a_n\pm b_n)-(a\pm b)$. А это и значит $a_n\pm b_n\to a\pm b$.</p>
+</div></div>
+
+<div class="it"><div class="hd"><span class="tg">Лекции §4, Теорема 2</span><span class="nm">Предел модуля</span></div>
+<div class="st">Если $a_n\to a$, то $|a_n|\to|a|$. <span class="note">Обратное неверно ($(-1)^n$), кроме случая $a=0$.</span></div>
+<div class="pf lazy">
+<p>По лемме 1б: $\big||a_n|-|a|\big|\le|a_n-a|$. Для $\varepsilon\gt0$ берём $N$ из определения $a_n\to a$. При $n\ge N$: $\big||a_n|-|a|\big|\le|a_n-a|\lt\varepsilon$.</p>
+<p>Случай $a=0$: $|a_n-0|=\big||a_n|-0\big|$, поэтому $a_n\to0\iff|a_n|\to0$.</p>
+</div></div>
+
+<div class="it"><div class="hd"><span class="tg">Лекции §4, Лемма 3 · билет</span><span class="nm">Б.м. × ограниченная = б.м.</span></div>
+<div class="st">Если $\{a_n\}$ ограничена, $\{b_n\}$ б.м., то $\{a_nb_n\}$ б.м.</div>
+<div class="pf lazy">
+<p>$\exists M\gt0\ \forall n:\ |a_n|\le M$ (если подошло $M=0$, подойдёт и $M=1$, поэтому считаем $M\gt0$).</p>
+<p>Возьмём $\varepsilon\gt0$. Б.м. с числом $\frac\varepsilon M\gt0$: $\exists N\ \forall n\ge N:\ |b_n|\lt\frac\varepsilon M$. Тогда</p>
+$$|a_nb_n|=|a_n|\,|b_n|\lt M\cdot\frac\varepsilon M=\varepsilon.$$
+</div></div>
+
+<div class="it"><div class="hd"><span class="tg">Лекции §4, Теорема 3</span><span class="nm">Предел произведения</span></div>
+<div class="st">Если $a_n\to a$, $b_n\to b$, то $a_nb_n\to ab$.</div>
+<div class="pf lazy">
+<p>Нужно: $a_nb_n-ab$ — б.м. Добавим и вычтем $a_nb$:</p>
+$$a_nb_n-ab=a_n(b_n-b)+(a_n-a)b.$$
+<ul><li>$\{a_n\}$ сходится, значит ограничена (теорема 2 §3); $\{b_n-b\}$ б.м. По лемме 3 $a_n(b_n-b)$ б.м.</li>
+<li>$\{a_n-a\}$ б.м., константа $b$ ограничена. По лемме 3 $(a_n-a)b$ б.м.</li></ul>
+<p>Сумма двух б.м. — б.м. (лемма 2).</p>
+<p class="note">Частный случай: $ca_n\to ca$.</p>
+</div></div>
+
+<div class="it"><div class="hd"><span class="tg">Лекции §4, Лемма 4</span><span class="nm">Предел обратной</span></div>
+<div class="st">Если $a_n\ne0$ при всех $n$ и $a_n\to a\ne0$, то $\frac1{a_n}\to\frac1a$.</div>
+<div class="pf lazy">
+<p><b>Шаг 1: $\frac1{a_n}$ ограничена.</b> По отделимости (раздел 4) $\exists N\ \forall n\ge N:\ |a_n|\gt\frac{|a|}2$, то есть $\frac1{|a_n|}\lt\frac2{|a|}$. Положим $M=\max\left\{\frac1{|a_1|},\dots,\frac1{|a_{N-1}|},\frac2{|a|}\right\}$, тогда $\frac1{|a_n|}\le M$ при всех $n$.</p>
+<p><b>Шаг 2.</b> Приводим к общему знаменателю:</p>
+$$\frac1{a_n}-\frac1a=\frac{a-a_n}{a_na}=(a-a_n)\cdot\frac1{a_n a}.$$
+<p>$\{a-a_n\}$ б.м.; $\left|\frac1{a_na}\right|\le\frac M{|a|}$ — ограничена. По лемме 3 произведение б.м.</p>
+</div></div>
+
+<div class="it"><div class="hd"><span class="tg">Лекции §4, Теорема 4</span><span class="nm">Предел частного</span></div>
+<div class="st">Если $a_n\ne0$, $a_n\to a\ne0$, $b_n\to b$, то $\frac{b_n}{a_n}\to\frac ba$.</div>
+<div class="pf lazy">
+<p>$\frac{b_n}{a_n}=b_n\cdot\frac1{a_n}$. По лемме 4 $\frac1{a_n}\to\frac1a$, по теореме 3 $b_n\cdot\frac1{a_n}\to b\cdot\frac1a=\frac ba$.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп.</span><span class="nm">Предел корня</span></div>
+<div class="st">Если $a_n\ge0$ и $a_n\to a$, то $\sqrt{a_n}\to\sqrt a$.</div>
+<div class="pf lazy">
+<p>Сначала $a\ge0$: по предельному переходу в неравенстве $a_n\ge0$ (раздел 6).</p>
+<p><b>$a\gt0$.</b> Домножим и поделим на сопряжённое:</p>
+$$|\sqrt{a_n}-\sqrt a|=\frac{|a_n-a|}{\sqrt{a_n}+\sqrt a}\le\frac{|a_n-a|}{\sqrt a}\quad(\text{так как }\sqrt{a_n}\ge0).$$
+<p>Для $\varepsilon\gt0$ берём $N$, при котором $|a_n-a|\lt\varepsilon\sqrt a$ при $n\ge N$. Тогда $|\sqrt{a_n}-\sqrt a|\lt\varepsilon$.</p>
+<p><b>$a=0$.</b> Для $\varepsilon\gt0$ берём $N$: $a_n\lt\varepsilon^2$ при $n\ge N$. Корень возрастает, поэтому $\sqrt{a_n}\lt\varepsilon$.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп.</span><span class="nm">Сходящаяся ± расходящаяся</span></div>
+<div class="st">Если $\{a_n\}$ сходится, а $\{b_n\}$ не имеет конечного предела, то $\{a_n+b_n\}$ тоже не имеет конечного предела. Сумма (и произведение) двух расходящихся может сходиться.</div>
+<div class="pf lazy">
+<p>От противного: $a_n\to a$, $a_n+b_n\to c$. Тогда по теореме 1 $b_n=(a_n+b_n)-a_n\to c-a\in\mathbb R$ — противоречие.</p>
+<p><b>Примеры:</b> $(-1)^n+(-1)^{n+1}=0$; $(-1)^n\cdot(-1)^n=1$. Сходящаяся × расходящаяся тоже может сходиться: $\frac1n\cdot n=1$.</p>
+</div></div>
+</section>
+
+<!-- ============ 6 ============ -->
+<section id="s6" data-t="Неравенства, зажатая">
+<h2>6. Предельный переход в неравенствах. Теорема о зажатой последовательности</h2>
+
+<div class="it"><div class="hd"><span class="tg">Лекции §5, Теорема 1</span><span class="nm">Если $A\lt B$, то $a_n\lt b_n$ с некоторого номера</span></div>
+<div class="st">Пусть $a_n\to A$, $b_n\to B$, $A,B\in\overline{\mathbb R}$, $A\lt B$. Тогда $\exists N\ \forall n\ge N:\ a_n\lt b_n$.</div>
+<div class="pf lazy">
+<p>По лемме 1 §3 $\exists\varepsilon\gt0:\ \forall x\in U_\varepsilon(A)\ \forall y\in U_\varepsilon(B):\ x\lt y$.</p>
+<p>$\exists N_1\ \forall n\ge N_1:\ a_n\in U_\varepsilon(A)$; $\exists N_2\ \forall n\ge N_2:\ b_n\in U_\varepsilon(B)$.</p>
+<p>При $n\ge N=\max\{N_1,N_2\}$: $a_n\in U_\varepsilon(A)$, $b_n\in U_\varepsilon(B)$, значит $a_n\lt b_n$.</p>
+</div></div>
+
+<div class="it"><div class="hd"><span class="tg">Лекции §5, Теорема 2 + следствие</span><span class="nm">Предельный переход в нестрогом неравенстве</span></div>
+<div class="st">Если $a_n\to A$, $b_n\to B$ ($A,B\in\overline{\mathbb R}$) и $\exists N\ \forall n\ge N:\ a_n\le b_n$, то $A\le B$.<br><b>Следствие:</b> если $a_n\le B$ (константа) с некоторого номера и $a_n\to A$, то $A\le B$.</div>
+<div class="pf lazy">
+<p>От противного: $A\gt B$, то есть $B\lt A$. По теореме 1 (с переставленными ролями) $\exists N_1\ \forall n\ge N_1:\ b_n\lt a_n$. При $n=\max\{N,N_1\}$ одновременно $a_n\le b_n$ и $b_n\lt a_n$ — противоречие.</p>
+<p>Следствие: берём $b_n\equiv B$, тогда $b_n\to B$.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп.</span><span class="nm">Строгое неравенство в пределе не сохраняется; сохранение знака</span></div>
+<div class="st">1) Из $a_n\lt b_n$ следует только $A\le B$. 2) Если $a_n\to A$ и $A\gt b$ ($b\in\mathbb R$), то $a_n\gt b$ с некоторого номера.</div>
+<div class="pf lazy">
+<p>1) $a_n=0\lt b_n=\frac1n$, но $A=B=0$. А $A\le B$ следует из теоремы 2, так как $a_n\lt b_n\Rightarrow a_n\le b_n$.</p>
+<p>2) Теорема 1 для константы $c_n\equiv b\to b$ и $b\lt A$: $\exists N\ \forall n\ge N:\ b\lt a_n$.</p>
+</div></div>
+
+<div class="it"><div class="hd"><span class="tg">Лекции §5, Теорема 3</span><span class="nm">О трёх (зажатой) последовательностях</span></div>
+<div class="st">Если $\exists N\ \forall n\ge N:\ a_n\le b_n\le c_n$ и $a_n\to A$, $c_n\to A$, $A\in\mathbb R$, то $b_n\to A$.</div>
+<div class="pf lazy">
+<p>Возьмём $\varepsilon\gt0$. $\exists N_1\ \forall n\ge N_1:\ A-\varepsilon\lt a_n$; $\exists N_2\ \forall n\ge N_2:\ c_n\lt A+\varepsilon$.</p>
+<p>При $n\ge N'=\max\{N,N_1,N_2\}$:</p>
+$$A-\varepsilon\lt a_n\le b_n\le c_n\lt A+\varepsilon\ \Rightarrow\ |b_n-A|\lt\varepsilon.$$
+</div></div>
+
+<div class="it"><div class="hd"><span class="tg">Лекции §5, Теорема 4</span><span class="nm">Зажатость для бесконечных пределов</span></div>
+<div class="st">Пусть $\exists N\ \forall n\ge N:\ a_n\le b_n$. 1) Если $a_n\to+\infty$, то $b_n\to+\infty$. 2) Если $b_n\to-\infty$, то $a_n\to-\infty$.</div>
+<div class="pf lazy">
+<p>1) Возьмём $E\gt0$: $\exists N_1\ \forall n\ge N_1:\ a_n\gt E$. При $n\ge\max\{N,N_1\}$: $b_n\ge a_n\gt E$.</p>
+<p>2) $\forall E\ \exists N_1\ \forall n\ge N_1:\ b_n\lt-E$; тогда $a_n\le b_n\lt-E$ при $n\ge\max\{N,N_1\}$.</p>
+</div></div>
+</section>
+
+<!-- ============ 7 ============ -->
+<section id="s7" data-t="Стандартные последовательности">
+<h2>7. Сходимость стандартных последовательностей</h2>
+<div class="defs"><p>В лекциях есть только $a^n\to+\infty$ при $a\gt1$. Остальное — собственные доказательства. Порядок важен: лемма об отношении опирается на $q^n\to0$.</p></div>
+
+<div class="it"><div class="hd"><span class="tg">Лекции §7, Лемма 2</span><span class="nm">$a^n\to+\infty$ при $a\gt1$</span></div>
+<div class="st">Если $a\gt1$, то $\lim a^n=+\infty$.</div>
+<div class="pf lazy">
+<p>Положим $x=a-1\gt0$. По Бернулли $a^n=(1+x)^n\ge1+nx$.</p>
+<p>$1+nx\to+\infty$: для $E\gt0$ по Архимеду есть $N\gt\frac Ex$, тогда при $n\ge N$: $1+nx\gt nx\ge Nx\gt E$.</p>
+<p>По теореме 4 §5 (зажатость для $+\infty$) $a^n\to+\infty$.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп. · программа 7a</span><span class="nm">$q^n$ при всех $q\in\mathbb R$</span></div>
+<div class="st">$\lim q^n=0$ при $|q|\lt1$; $=1$ при $q=1$; $=+\infty$ при $q\gt1$; при $q=-1$ предела нет; при $q\lt-1$ последовательность б.б., но предела ($\pm\infty$ в том числе) нет.</div>
+<div class="pf lazy">
+<p><b>$|q|\lt1$.</b> При $q=0$ все члены нули. Пусть $0\lt|q|\lt1$. Тогда $\frac1{|q|}\gt1$, поэтому $\left(\frac1{|q|}\right)^n\to+\infty$ (лемма 2), то есть б.б. Обратная к б.б. — б.м.: $|q|^n=\frac1{(1/|q|)^n}\to0$. Наконец, $|q^n-0|=|q|^n$, поэтому $q^n\to0$.</p>
+<p><b>$q=1$:</b> константа 1. <b>$q\gt1$:</b> лемма 2.</p>
+<p><b>$q=-1$:</b> $a_{2k}=1\to1$, $a_{2k-1}=-1\to-1$. Если бы был предел $A\in\overline{\mathbb R}$, обе подпоследовательности стремились бы к $A$ (раздел 11), а $1\ne-1$.</p>
+<p><b>$q\lt-1$:</b> $|q^n|=|q|^n\to+\infty$ (лемма 2, $|q|\gt1$) — б.б. Но $q^{2k}\gt0$ и $q^{2k-1}\lt0$. Если бы $q^n\to+\infty$, то с некоторого номера все члены лежали бы в $U_1(+\infty)=(1,+\infty)$, а среди них есть отрицательные. Аналогично для $-\infty$.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп. · программа 7b</span><span class="nm">$\sqrt[n]a\to1$, $a\gt0$</span></div>
+<div class="st">Для любого $a\gt0$: $\lim\sqrt[n]a=1$.</div>
+<div class="pf lazy">
+<p><b>$a\gt1$.</b> Тогда $\sqrt[n]a\gt1$ (если бы $\sqrt[n]a\le1$, то $a=(\sqrt[n]a)^n\le1$). Положим $h_n=\sqrt[n]a-1\gt0$. По Бернулли</p>
+$$a=(1+h_n)^n\ge1+nh_n\ \Rightarrow\ 0\lt h_n\le\frac{a-1}n.$$
+<p>$\frac{a-1}n\to0$ (константа × $\frac1n$), по теореме о зажатой $h_n\to0$, значит $\sqrt[n]a=1+h_n\to1$.</p>
+<p><b>$a=1$:</b> константа. <b>$0\lt a\lt1$:</b> $\frac1a\gt1$, и $\sqrt[n]a=\frac1{\sqrt[n]{1/a}}\to\frac11=1$ (лемма 4 §4).</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп. · программа 7c</span><span class="nm">$\sqrt[n]n\to1$</span></div>
+<div class="st">$\lim\sqrt[n]n=1$.</div>
+<div class="pf lazy">
+<p>При $n\ge2$: $\sqrt[n]n\gt1$ (как выше). Пусть $h_n=\sqrt[n]n-1\gt0$. Бернулли тут не хватит, берём оценку через бином (раздел 3):</p>
+$$n=(1+h_n)^n\ge\frac{n(n-1)}2h_n^2\ \Rightarrow\ h_n^2\le\frac2{n-1}\ \Rightarrow\ 0\lt h_n\le\sqrt{\frac2{n-1}}.$$
+<p>Правая часть $\to0$: для $\varepsilon\gt0$ неравенство $\frac2{n-1}\lt\varepsilon^2$ равносильно $n\gt1+\frac2{\varepsilon^2}$; берём такое $N$ по Архимеду. Тогда по зажатой $h_n\to0$, и $\sqrt[n]n\to1$.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп.</span><span class="nm">Лемма об отношении (признак Даламбера для последовательностей)</span></div>
+<div class="st">Пусть $a_n\ne0$. 1) Если $\exists q\in(0,1)\ \exists N\ \forall n\ge N:\ \left|\frac{a_{n+1}}{a_n}\right|\le q$, то $a_n\to0$. 2) Если $\left|\frac{a_{n+1}}{a_n}\right|\to L\lt1$, то $a_n\to0$.</div>
+<div class="pf lazy">
+<p>1) Индукцией: $|a_n|\le|a_N|q^{n-N}$ при $n\ge N$. База $n=N$ — равенство. Шаг: $|a_{n+1}|\le q|a_n|\le q|a_N|q^{n-N}=|a_N|q^{n+1-N}$.</p>
+<p>Значит, $0\le|a_n|\le C\,q^n$, где $C=|a_N|q^{-N}$ — константа. $q^n\to0$ (так как $0\lt q\lt1$), по зажатой $|a_n|\to0$, то есть $a_n\to0$.</p>
+<p>2) Положим $q=\frac{1+L}2$. Так как $0\le L\lt1$, имеем $q\in(L,1)$ и $q\ge\frac12\gt0$. Возьмём $\varepsilon=q-L=\frac{1-L}2\gt0$: $\exists N\ \forall n\ge N:\ \left|\frac{a_{n+1}}{a_n}\right|\lt L+\varepsilon=q$. Применяем пункт 1.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп. · программа 7d</span><span class="nm">$\frac{n^2}{2^n}\to0$</span></div>
+<div class="st">$\lim\frac{n^2}{2^n}=0$.</div>
+<div class="pf lazy">
+<p>При $n\ge3$ по биному (все слагаемые $\ge0$, оставляем одно с $k=3$):</p>
+$$2^n=(1+1)^n\ge C_n^3=\frac{n(n-1)(n-2)}6.$$
+<p>Отсюда $0\lt\frac{n^2}{2^n}\le\frac{6n^2}{n(n-1)(n-2)}=\frac{6n}{(n-1)(n-2)}$.</p>
+<p>Оценим знаменатель снизу: $n-1\ge\frac n2\iff n\ge2$ и $n-2\ge\frac n2\iff n\ge4$. Значит, при $n\ge4$: $(n-1)(n-2)\ge\frac{n^2}4$ и</p>
+$$0\lt\frac{n^2}{2^n}\le\frac{6n}{n^2/4}=\frac{24}n\to0.$$
+<p>По теореме о зажатой $\frac{n^2}{2^n}\to0$.</p>
+<p class="note">Через лемму об отношении: $\frac{a_{n+1}}{a_n}=\frac{(n+1)^2}{2n^2}=\frac12\left(1+\frac1n\right)^2\to\frac12\lt1$.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп. · обобщение 7d</span><span class="nm">$\frac{n^k}{a^n}\to0$ при $a\gt1$</span></div>
+<div class="st">Для любых $k\in\mathbb N$ и $a\gt1$: $\lim\frac{n^k}{a^n}=0$ («показательная растёт быстрее степенной»).</div>
+<div class="pf lazy">
+<p>$x_n=\frac{n^k}{a^n}\gt0$. Отношение соседних членов:</p>
+$$\frac{x_{n+1}}{x_n}=\frac{(n+1)^k}{a^{n+1}}\cdot\frac{a^n}{n^k}=\frac1a\left(1+\frac1n\right)^k.$$
+<p>$1+\frac1n\to1$, и по теореме о произведении ($k$ раз) $\left(1+\frac1n\right)^k\to1$. Значит, $\frac{x_{n+1}}{x_n}\to\frac1a\lt1$, и по лемме об отношении $x_n\to0$.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп. · программа 7e + обобщение</span><span class="nm">$\frac{2^n}{n!}\to0$ и $\frac{a^n}{n!}\to0$</span></div>
+<div class="st">$\lim\frac{2^n}{n!}=0$; более того, $\lim\frac{a^n}{n!}=0$ для любого $a\in\mathbb R$ («факториал быстрее показательной»).</div>
+<div class="pf lazy">
+<p><b>$\frac{2^n}{n!}$.</b> $\frac{x_{n+1}}{x_n}=\frac{2^{n+1}}{(n+1)!}\cdot\frac{n!}{2^n}=\frac2{n+1}\le\frac12$ при $n\ge3$ ($n+1\ge4$). Лемма об отношении с $q=\frac12$, $N=3$.</p>
+<p><b>Общий случай.</b> $a=0$ — нули. При $a\ne0$: $\left|\frac{x_{n+1}}{x_n}\right|=\frac{|a|}{n+1}\to0\lt1$, и снова работает лемма об отношении (п. 2).</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп.</span><span class="nm">$\frac{n!}{n^n}\to0$ и шкала роста</span></div>
+<div class="st">$\lim\frac{n!}{n^n}=0$. Итог раздела: при $a\gt1$, $k\in\mathbb N$ имеем $n^k\ll a^n\ll n!\ll n^n$ (отношение левой к правой $\to0$).</div>
+<div class="pf lazy">
+<p>$\frac{x_{n+1}}{x_n}=\frac{(n+1)!}{(n+1)^{n+1}}\cdot\frac{n^n}{n!}=\frac{(n+1)\,n^n}{(n+1)^{n+1}}=\frac{n^n}{(n+1)^n}=\frac1{\left(1+\frac1n\right)^n}.$</p>
+<p>По Бернулли $\left(1+\frac1n\right)^n\ge1+n\cdot\frac1n=2$, поэтому отношение $\le\frac12$ при всех $n$. Лемма об отношении.</p>
+</div></div>
+</section>
+
+<!-- ============ 8 ============ -->
+<section id="s8" data-t="Грани, аксиома непрерывности">
+<h2>8. Ограниченные множества. Аксиома непрерывности. Точные грани</h2>
+<div class="defs">
+<p><b>Аксиома непрерывности:</b> если $A,B\subset\mathbb R$ непусты и $\forall a\in A\ \forall b\in B:\ a\le b$, то $\exists c\in\mathbb R:\ \forall a\in A\ \forall b\in B:\ a\le c\le b$.</p>
+<p><b>$M=\sup A$:</b> 1) $\forall a\in A:\ a\le M$; 2) нет меньшей верхней грани: $\forall M'\lt M\ \exists a\in A:\ a\gt M'$.</p>
+</div>
+
+<div class="it"><div class="hd"><span class="tg">Лекции §2, Теорема 1</span><span class="nm">Существование и единственность супремума</span></div>
+<div class="st">Если $A\subset\mathbb R$ непусто и ограничено сверху, то существует единственное $M\in\mathbb R$, $M=\sup A$.</div>
+<div class="pf lazy">
+<p>Пусть $B$ — множество всех верхних граней $A$. $B\ne\varnothing$, так как $A$ ограничено сверху. По определению верхней грани $\forall a\in A\ \forall b\in B:\ a\le b$, то есть $A$ лежит левее $B$.</p>
+<p>По аксиоме непрерывности $\exists c:\ \forall a\in A\ \forall b\in B:\ a\le c\le b$.</p>
+<ul><li>$a\le c$ для всех $a\in A$, значит $c$ — верхняя грань, $c\in B$.</li>
+<li>$c\le b$ для всех $b\in B$, значит $c=\min B$ — наименьшая верхняя грань, то есть $c=\sup A$.</li></ul>
+<p><b>Единственность.</b> Пусть $M_1\ne M_2$ — два супремума, например $M_1\lt M_2$. Оба — минимальные элементы $B$. Но $M_1\in B$ и $M_1\lt M_2$, значит $M_2$ не минимальный. Противоречие.</p>
+<p class="note">Непустота нужна: для $A=\varnothing$ любое число — верхняя грань, и наименьшей нет.</p>
+</div></div>
+
+<div class="it"><div class="hd"><span class="tg">Лекции §2, Теорема 2</span><span class="nm">Критерий супремума в «ε-форме»; $\sup=+\infty$</span></div>
+<div class="st">Для непустого $A$: $\sup A\in\overline{\mathbb R}$ существует и единственен; $\sup A\in\mathbb R$, если $A$ ограничено сверху, иначе $\sup A=+\infty$. И $M=\sup A\iff$ 1) $\forall a\in A:\ a\le M$ и 2) $\forall M'\lt M\ \exists a\in A:\ a\gt M'$. Для конечного $M$ условие 2) равносильно $\forall\varepsilon\gt0\ \exists a\in A:\ a\gt M-\varepsilon$.</div>
+<div class="pf lazy">
+<p><b>Пункт 2 — это переписанное «нет меньшей верхней грани».</b> По правилам отрицания:</p>
+$$\lnot\big(\exists M'\lt M:\ \forall a\in A\ a\le M'\big)\iff\forall M'\lt M\ \exists a\in A:\ a\gt M'.$$
+<p>Подставляя $M'=M-\varepsilon$, получаем $\varepsilon$-форму: каждое $M'\lt M$ имеет вид $M-\varepsilon$ при $\varepsilon=M-M'\gt0$, и наоборот.</p>
+<p><b>Неограниченное сверху $A$.</b> Конечной верхней грани нет, поэтому единственный кандидат — $+\infty$. Проверка: 1) $a\le+\infty$ для всех $a$; 2) для любого $M'\lt+\infty$ найдётся $a\gt M'$, иначе $M'$ было бы верхней гранью. Обратно, если для $M=+\infty$ выполнено 2), то $A$ неограничено сверху.</p>
+<p><b>Ограниченное:</b> теорема 1 и пункт выше.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">Лекции §2, Т2′ + ★</span><span class="nm">Инфимум; $\inf A=-\sup(-A)$</span></div>
+<div class="st">Если $A$ непусто и ограничено снизу, то существует единственный $\inf A\in\mathbb R$, причём $\inf A=-\sup(-A)$, где $-A=\{-a:\ a\in A\}$.</div>
+<div class="pf lazy">
+<p>$m$ — нижняя грань $A$ $\iff\forall a\in A:\ a\ge m\iff\forall a:\ -a\le-m\iff-m$ — верхняя грань $-A$.</p>
+<p>Значит, $-A$ непусто и ограничено сверху, и по теореме 1 существует $S=\sup(-A)$. Множества нижних граней $A$ и верхних граней $-A$ переходят друг в друга сменой знака, причём смена знака переворачивает порядок. Поэтому наименьшей верхней грани $S$ множества $-A$ соответствует наибольшая нижняя грань $-S$ множества $A$: $\inf A=-S$. Единственность — из единственности $S$.</p>
+</div></div>
+
+<div class="it"><div class="hd"><span class="tg">Лекции §2, Лемма 1</span><span class="nm">Если есть максимум, то $\sup=\max$</span></div>
+<div class="st">а) Если $\exists\max A$, то $\sup A=\max A$. б) Если $\exists\min A$, то $\inf A=\min A$.</div>
+<div class="pf lazy">
+<p>а) $M=\max A$ — верхняя грань (по определению максимума). Пусть $M'\lt M$. Так как $M\in A$ и $M\gt M'$, то $M'$ не верхняя грань. Значит, $M$ — наименьшая верхняя грань. б) Аналогично.</p>
+<p class="note">Обратное неверно: $\sup(-\infty,0)=0$, но максимума нет — для любого $a\lt0$ есть $\frac a2\in A$, $\frac a2\gt a$.</p>
+</div></div>
+
+<div class="it"><div class="hd"><span class="tg">Лекции §2, Теорема 3</span><span class="nm">Принцип Архимеда</span></div>
+<div class="st">$\forall x\in\mathbb R\ \exists n\in\mathbb N:\ n\gt x$.</div>
+<div class="pf lazy">
+<p>От противного: $\exists x\ \forall n\in\mathbb N:\ n\le x$. Тогда $\mathbb N$ непусто и ограничено сверху, и по теореме 1 существует $M=\sup\mathbb N\in\mathbb R$.</p>
+<p>Пункт 2 определения sup с $M'=M-1\lt M$: $\exists n\in\mathbb N:\ n\gt M-1$. Тогда $n+1\in\mathbb N$ и $n+1\gt M$ — противоречие с тем, что $M$ — верхняя грань $\mathbb N$.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп.</span><span class="nm">$\frac1n\to0$</span></div>
+<div class="st">$\lim\frac1n=0$.</div>
+<div class="pf lazy">
+<p>Возьмём $\varepsilon\gt0$. По Архимеду $\exists N\in\mathbb N:\ N\gt\frac1\varepsilon$. При $n\ge N$: $0\lt\frac1n\le\frac1N\lt\varepsilon$.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп. (задача 2 §2)</span><span class="nm">Существование и единственность целой части</span></div>
+<div class="st">$\forall x\in\mathbb R$ существует единственное $m\in\mathbb Z$: $x-1\lt m\le x$ (обозначение $[x]$).</div>
+<div class="pf lazy">
+<p>$S=\{m\in\mathbb Z:\ m\le x\}$.</p>
+<ul><li>$S\ne\varnothing$: по Архимеду $\exists n\in\mathbb N:\ n\gt-x$, тогда $-n\lt x$ и $-n\in S$.</li>
+<li>$S$ ограничено сверху числом $x$, поэтому $\exists M=\sup S$.</li></ul>
+<p>По пункту 2 sup с $M'=M-1$: $\exists m\in S:\ m\gt M-1$. Тогда $m+1\gt M$, значит $m+1\notin S$, то есть $m+1\gt x$. Итого $m\le x\lt m+1$, что равносильно $x-1\lt m\le x$.</p>
+<p><b>Единственность:</b> если $m_1,m_2\in(x-1,x]$, то $|m_1-m_2|\lt1$, а разность целых меньше 1 по модулю — это 0.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп.</span><span class="nm">Плотность $\mathbb Q$ в $\mathbb R$</span></div>
+<div class="st">$\forall a\lt b\ \exists r\in\mathbb Q:\ a\lt r\lt b$. Также существует иррациональное число между $a$ и $b$.</div>
+<div class="pf lazy">
+<p>По Архимеду $\exists n\in\mathbb N:\ n\gt\frac1{b-a}$, то есть $nb-na\gt1$. Положим $m=[na]+1\in\mathbb Z$.</p>
+<ul><li>$[na]\le na\lt[na]+1=m$, значит $m\gt na$;</li>
+<li>$m=[na]+1\le na+1\lt nb$.</li></ul>
+<p>Итак, $na\lt m\lt nb$, делим на $n\gt0$: $a\lt\frac mn\lt b$.</p>
+<p><b>Иррациональное:</b> возьмём рациональное $r\in(a-\sqrt2,\ b-\sqrt2)$. Тогда $r+\sqrt2\in(a,b)$ и иррационально (иначе $\sqrt2=(r+\sqrt2)-r\in\mathbb Q$).</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп.</span><span class="nm">Последовательность, сходящаяся к супремуму</span></div>
+<div class="st">Если $A\ne\varnothing$, $M=\sup A$, то $\exists\{a_n\}\subset A:\ a_n\to M$ (верно и для $M=+\infty$).</div>
+<div class="pf lazy">
+<p><b>$M\in\mathbb R$.</b> Для каждого $n$ применим пункт 2 sup с $M'=M-\frac1n$: $\exists a_n\in A:\ a_n\gt M-\frac1n$. Кроме того, $a_n\le M$. Итого $M-\frac1n\lt a_n\le M$; крайние $\to M$, по зажатой $a_n\to M$.</p>
+<p><b>$M=+\infty$:</b> $A$ неограничено сверху, поэтому $\forall n\ \exists a_n\in A:\ a_n\gt n$, и по теореме 4 §5 $a_n\to+\infty$.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп.</span><span class="nm">Монотонность sup и $\sup(A+B)$</span></div>
+<div class="st">1) $\varnothing\ne A\subset B\Rightarrow\sup A\le\sup B$. 2) Для непустых ограниченных сверху $A,B$: $\sup(A+B)=\sup A+\sup B$, где $A+B=\{a+b:\ a\in A,\ b\in B\}$.</div>
+<div class="pf lazy">
+<p>1) Если $\sup B=+\infty$, доказывать нечего. Иначе $\sup B$ — верхняя грань $B$, а значит и $A$ (каждый $a\in A$ лежит в $B$). А $\sup A$ — наименьшая верхняя грань $A$, поэтому $\sup A\le\sup B$.</p>
+<p>2) $S=\sup A$, $T=\sup B$. Проверяем критерий для $S+T$:</p>
+<ul><li>$a+b\le S+T$ для всех $a\in A$, $b\in B$;</li>
+<li>для $\varepsilon\gt0$: $\exists a\in A:\ a\gt S-\frac\varepsilon2$ и $\exists b\in B:\ b\gt T-\frac\varepsilon2$. Тогда $a+b\gt S+T-\varepsilon$.</li></ul>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп. (задача 3 §1)</span><span class="nm">В $\mathbb Q$ аксиома непрерывности не выполняется</span></div>
+<div class="st">$A=\{r\in\mathbb Q:\ r\gt0,\ r^2\lt2\}$ лежит левее $B=\{r\in\mathbb Q:\ r\gt0,\ r^2\gt2\}$, но не существует $c\in\mathbb Q$, разделяющего их.</div>
+<div class="pf lazy">
+<p><b>$A$ левее $B$:</b> если $a\in A$, $b\in B$, то $a^2\lt2\lt b^2$ и $a,b\gt0$, значит $a\lt b$. Оба непусты: $1\in A$, $2\in B$.</p>
+<p>Пусть $c\in\mathbb Q$ и $a\le c\le b$ для всех $a\in A$, $b\in B$. Тогда $c\ge1\gt0$. По иррациональности $\sqrt2$ $c^2\ne2$.</p>
+<p><b>Случай $c^2\lt2$.</b> $h=\min\left\{1,\ \frac{2-c^2}{2c+1}\right\}\in\mathbb Q$, $0\lt h\le1$, поэтому $h^2\le h$:</p>
+$$(c+h)^2=c^2+2ch+h^2\le c^2+h(2c+1)\le c^2+(2-c^2)=2.$$
+<p>$c+h$ рационально, поэтому $(c+h)^2\ne2$, значит $(c+h)^2\lt2$ и $c+h\in A$. Но $c+h\gt c$ — противоречие с $a\le c$.</p>
+<p><b>Случай $c^2\gt2$.</b> $h=\frac{c^2-2}{2c}\in\mathbb Q$, $h\gt0$, и $h\lt\frac{c^2}{2c}=\frac c2$, поэтому $c-h\gt0$:</p>
+$$(c-h)^2=c^2-2ch+h^2\gt c^2-2ch=c^2-(c^2-2)=2.$$
+<p>Значит, $c-h\in B$ и $c-h\lt c$ — противоречие с $c\le b$.</p>
+</div></div>
+</section>
+
+<!-- ============ 9 ============ -->
+<section id="s9" data-t="Теорема Вейерштрасса">
+<h2>9. Теорема Вейерштрасса</h2>
+
+<div class="it"><div class="hd"><span class="tg">Лекции §6, Теорема 1</span><span class="nm">Теорема Вейерштрасса о монотонной последовательности</span></div>
+<div class="st">1) Если $\{a_n\}$ нестрого возрастает, то $\exists\lim a_n=\sup\{a_n\}$ (в $\overline{\mathbb R}$). 2) Если нестрого убывает, то $\exists\lim a_n=\inf\{a_n\}$.</div>
+<div class="pf lazy">
+<p><b>1) Ограничена сверху.</b> По теореме 1 §2 $\exists a=\sup\{a_n\}\in\mathbb R$. Возьмём $\varepsilon\gt0$.</p>
+<ul><li>Пункт 2 sup: $\exists N:\ a_N\gt a-\varepsilon$.</li>
+<li>Возрастание: $\forall n\ge N:\ a_n\ge a_N\gt a-\varepsilon$.</li>
+<li>Пункт 1 sup: $a_n\le a\lt a+\varepsilon$.</li></ul>
+<p>Итого $\forall n\ge N:\ |a_n-a|\lt\varepsilon$.</p>
+<p><b>1) Неограничена сверху</b> ($\sup=+\infty$). Для $E\gt0$: $E$ не верхняя грань, значит $\exists N:\ a_N\gt E$. По возрастанию $\forall n\ge N:\ a_n\ge a_N\gt E$, то есть $a_n\to+\infty$.</p>
+<p><b>2)</b> Применяем пункт 1 к $\{-a_n\}$ (она возрастает): $-a_n\to\sup\{-a_n\}=-\inf\{a_n\}$.</p>
+</div></div>
+
+<div class="it"><div class="hd"><span class="tg">Лекции §6, Следствие</span><span class="nm">Монотонная последовательность имеет предел</span></div>
+<div class="st">Любая монотонная последовательность имеет конечный или бесконечный предел. Возрастающая и ограниченная сверху (убывающая и ограниченная снизу) сходится.</div>
+<div class="pf lazy">
+<p>Прямо из теоремы: предел — $\sup$ или $\inf$ множества значений. Если последовательность ограничена (с нужной стороны), то по теореме 1 §2 это конечное число.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп.</span><span class="nm">$x_1=\sqrt2,\ x_{n+1}=\sqrt{2+x_n}$: предел 2</span></div>
+<div class="st">Последовательность $x_1=\sqrt2$, $x_{n+1}=\sqrt{2+x_n}$ сходится к $2$.</div>
+<div class="pf lazy">
+<p><b>Ограниченность:</b> $0\lt x_n\lt2$ индукцией. База: $0\lt\sqrt2\lt2$. Шаг: $0\lt x_{k+1}=\sqrt{2+x_k}\lt\sqrt{2+2}=2$.</p>
+<p><b>Возрастание:</b> оба числа положительны, поэтому</p>
+$$x_{n+1}\gt x_n\iff x_{n+1}^2\gt x_n^2\iff2+x_n\gt x_n^2\iff(x_n-2)(x_n+1)\lt0,$$
+<p>а это верно, так как $x_n-2\lt0$ и $x_n+1\gt0$.</p>
+<p><b>Предел.</b> По Вейерштрассу $\exists L=\lim x_n$, и $\sqrt2\le L\le2$ (предельный переход в неравенствах). Из $x_{n+1}^2=2+x_n$: левая часть $\to L^2$ (сдвиг индекса не меняет предела, плюс предел произведения), правая $\to2+L$. Значит, $L^2-L-2=0$, $L\in\{2,-1\}$, и так как $L\gt0$, $L=2$.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп.</span><span class="nm">Формула Герона: $x_{n+1}=\frac12\left(x_n+\frac a{x_n}\right)\to\sqrt a$</span></div>
+<div class="st">При $a\gt0$, $x_1\gt0$ последовательность $x_{n+1}=\frac12\left(x_n+\frac a{x_n}\right)$ сходится к $\sqrt a$.</div>
+<div class="pf lazy">
+<p>$x_n\gt0$ индукцией (сумма положительных, делённая на 2).</p>
+<p><b>Ограниченность снизу при $n\ge2$:</b></p>
+$$x_{n+1}-\sqrt a=\frac{x_n^2-2\sqrt a\,x_n+a}{2x_n}=\frac{(x_n-\sqrt a)^2}{2x_n}\ge0.$$
+<p><b>Убывание при $n\ge2$:</b> $x_{n+1}-x_n=\frac12\left(\frac a{x_n}-x_n\right)=\frac{a-x_n^2}{2x_n}\le0$, так как $x_n\ge\sqrt a$.</p>
+<p>По Вейерштрассу (начиная со второго члена; конечное число членов не влияет) $\exists L\ge\sqrt a\gt0$. Переходим к пределу в рекуррентном соотношении, пользуясь тем, что $L\ne0$ (предел частного): $L=\frac12\left(L+\frac aL\right)$, откуда $2L^2=L^2+a$, $L^2=a$ и $L=\sqrt a$.</p>
+</div></div>
+</section>
+
+<!-- ============ 10 ============ -->
+<section id="s10" data-t="Число e">
+<h2>10. Последовательность $\left(1+\frac1n\right)^n$. Число $e$</h2>
+<div class="defs"><p>Обозначения: $x_n=\left(1+\frac1n\right)^{n+1}$, $y_n=\left(1+\frac1n\right)^n$. В лекциях $e$ определено как $\lim x_n$.</p></div>
+
+<div class="it"><div class="hd"><span class="tg">Лекции §7, Теорема 1</span><span class="nm">$x_n=\left(1+\frac1n\right)^{n+1}$ убывает и сходится</span></div>
+<div class="st">Последовательность $x_n=\left(1+\frac1n\right)^{n+1}$ строго убывает и ограничена снизу, значит сходится. По определению $e=\lim x_n$.</div>
+<div class="pf lazy">
+<p><b>Снизу:</b> $1+\frac1n\gt1\Rightarrow x_n\gt1$.</p>
+<p><b>Убывание.</b> При $n\ge2$ сравниваем $x_{n-1}$ и $x_n$ через отношение:</p>
+$$\frac{x_{n-1}}{x_n}=\frac{\left(\frac n{n-1}\right)^n}{\left(\frac{n+1}n\right)^{n+1}}=\left(\frac n{n-1}\cdot\frac n{n+1}\right)^n\cdot\frac n{n+1}=\left(\frac{n^2}{n^2-1}\right)^n\cdot\frac n{n+1}.$$
+<p>$\frac{n^2}{n^2-1}=1+\frac1{n^2-1}$. По Бернулли с $x=\frac1{n^2-1}\gt0$:</p>
+$$\left(1+\frac1{n^2-1}\right)^n\ge1+\frac n{n^2-1}\gt1+\frac n{n^2}=1+\frac1n=\frac{n+1}n.$$
+<p>Значит, $\frac{x_{n-1}}{x_n}\gt\frac{n+1}n\cdot\frac n{n+1}=1$, то есть $x_{n-1}\gt x_n$.</p>
+<p>Убывает и ограничена снизу — по Вейерштрассу сходится.</p>
+</div></div>
+
+<div class="it"><div class="hd"><span class="tg">Лекции §7, Пример</span><span class="nm">$\left(1+\frac1n\right)^n\to e$</span></div>
+<div class="st">$\lim\left(1+\frac1n\right)^n=e$.</div>
+<div class="pf lazy">
+<p>$y_n=\frac{x_n}{1+\frac1n}$. Числитель $\to e$, знаменатель $\to1\ne0$ (так как $\frac1n\to0$). По теореме о частном $y_n\to\frac e1=e$.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп.</span><span class="nm">$y_n=\left(1+\frac1n\right)^n$ возрастает</span></div>
+<div class="st">$y_n$ строго возрастает и ограничена сверху (например, числом $x_1=4$). Это даёт второе доказательство существования $e$.</div>
+<div class="pf lazy">
+<p>При $n\ge2$:</p>
+$$\frac{y_n}{y_{n-1}}=\frac{\left(\frac{n+1}n\right)^n}{\left(\frac n{n-1}\right)^{n-1}}=\left(\frac{n+1}n\right)^n\left(\frac{n-1}n\right)^n\cdot\frac n{n-1}=\left(1-\frac1{n^2}\right)^n\cdot\frac n{n-1}.$$
+<p>По строгому Бернулли с $x=-\frac1{n^2}\in(-1,0)$: $\left(1-\frac1{n^2}\right)^n\gt1-\frac n{n^2}=1-\frac1n=\frac{n-1}n$.</p>
+<p>Значит, $\frac{y_n}{y_{n-1}}\gt\frac{n-1}n\cdot\frac n{n-1}=1$.</p>
+<p>Ограниченность: $y_n\lt y_n\left(1+\frac1n\right)=x_n\le x_1=4$.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп.</span><span class="nm">Двойная оценка для $e$</span></div>
+<div class="st">$\forall n\in\mathbb N:\quad\left(1+\frac1n\right)^n\lt e\lt\left(1+\frac1n\right)^{n+1}$.</div>
+<div class="pf lazy">
+<p>$y_n$ строго возрастает и $y_n\to e$; по Вейерштрассу $e=\sup y_n$. Тогда $y_n\lt y_{n+1}\le e$.</p>
+<p>$x_n$ строго убывает и $x_n\to e$; $e=\inf x_n$. Тогда $e\le x_{n+1}\lt x_n$.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп.</span><span class="nm">$2\lt e\lt3$</span></div>
+<div class="st">$2\lt e\lt3$. Попутно: $y_n\le\sum\limits_{k=0}^n\frac1{k!}\lt3$.</div>
+<div class="pf lazy">
+<p><b>$e\gt2$:</b> $e\gt y_1=2$ (двойная оценка).</p>
+<p><b>Оценка через бином.</b> $y_n=\sum_{k=0}^nC_n^k\frac1{n^k}$, и</p>
+$$\frac{C_n^k}{n^k}=\frac1{k!}\cdot\frac{n(n-1)\cdots(n-k+1)}{n^k}=\frac1{k!}\prod_{j=0}^{k-1}\left(1-\frac jn\right)\le\frac1{k!}.$$
+<p>Используя $k!\ge2^{k-1}$ (раздел 2) и сумму геометрической прогрессии:</p>
+$$y_n\le\sum_{k=0}^n\frac1{k!}\le1+1+\sum_{k=2}^n\frac1{2^{k-1}}=2+\left(1-\frac1{2^{n-1}}\right)\lt3.$$
+<p>Отсюда $e=\lim y_n\le3$. Строго: $e\lt x_5=\left(\frac65\right)^6=2{,}985984\lt3$.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп.</span><span class="nm">$\left(1-\frac1n\right)^n\to\frac1e$</span></div>
+<div class="st">$\lim\left(1-\frac1n\right)^n=\frac1e$.</div>
+<div class="pf lazy">
+<p>При $n\ge2$, обозначив $m=n-1$:</p>
+$$\left(1-\frac1n\right)^n=\left(\frac{n-1}n\right)^n=\frac1{\left(\frac n{n-1}\right)^n}=\frac1{\left(1+\frac1m\right)^{m+1}}=\frac1{x_{n-1}}.$$
+<p>$x_{n-1}\to e$ (сдвиг индекса не меняет предела), $e\ne0$, значит $\frac1{x_{n-1}}\to\frac1e$.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп.</span><span class="nm">$\left(1+\frac kn\right)^n\to e^k$, $k\in\mathbb N$</span></div>
+<div class="st">Для $k\in\mathbb N$: $\lim\left(1+\frac kn\right)^n=e^k$.</div>
+<div class="pf lazy">
+<p>Телескопическое разложение:</p>
+$$1+\frac kn=\frac{n+k}n=\frac{n+1}n\cdot\frac{n+2}{n+1}\cdots\frac{n+k}{n+k-1}=\prod_{j=0}^{k-1}\left(1+\frac1{n+j}\right).$$
+<p>Поэтому $\left(1+\frac kn\right)^n=\prod_{j=0}^{k-1}\left(1+\frac1{n+j}\right)^n$. Каждый сомножитель (при фиксированном $j$):</p>
+$$\left(1+\frac1{n+j}\right)^n=\frac{\left(1+\frac1{n+j}\right)^{n+j}}{\left(1+\frac1{n+j}\right)^j}\to\frac e{1^j}=e.$$
+<p>Числитель — это $y_{n+j}$, сдвиг $y_n$, поэтому $\to e$; знаменатель — произведение $j$ сомножителей, каждый $\to1$. Произведение $k$ сомножителей, каждый $\to e$, стремится к $e^k$.</p>
+</div></div>
+</section>
+
+<!-- ============ 11 ============ -->
+<section id="s11" data-t="Подпоследовательности, Б–В">
+<h2>11. Подпоследовательности. Частичный предел. Больцано–Вейерштрасс</h2>
+<div class="defs"><p><b>Подпоследовательность:</b> $b_k=a_{n_k}$, где $n_1\lt n_2\lt\dots$ — строго возрастающая последовательность натуральных чисел. <b>Частичный предел:</b> предел (из $\overline{\mathbb R}$) какой-нибудь подпоследовательности.</p></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп. (внутри §9 Т4)</span><span class="nm">$n_k\ge k$; подпоследовательность сходящейся сходится туда же</span></div>
+<div class="st">1) $n_k\ge k$ для всех $k$. 2) Если $a_n\to A\in\overline{\mathbb R}$, то любая подпоследовательность $a_{n_k}\to A$. <b>Следствие:</b> если две подпоследовательности имеют разные пределы, то у $\{a_n\}$ предела нет.</div>
+<div class="pf lazy">
+<p>1) Индукцией: $n_1\ge1$, так как это натуральное число. Если $n_k\ge k$, то $n_{k+1}\gt n_k\ge k$, а для целых это значит $n_{k+1}\ge k+1$.</p>
+<p>2) Для $\varepsilon\gt0$: $\exists N\ \forall n\ge N:\ a_n\in U_\varepsilon(A)$. При $k\ge N$: $n_k\ge k\ge N$, поэтому $a_{n_k}\in U_\varepsilon(A)$.</p>
+<p>Следствие: если бы $a_n\to A$, обе подпоследовательности стремились бы к $A$, и по единственности их пределы совпали бы.</p>
+</div></div>
+
+<div class="it"><div class="hd"><span class="tg">Лекции §9, Теорема 1</span><span class="nm">Критерий частичного предела</span></div>
+<div class="st">Для $A\in\overline{\mathbb R}$ равносильны: (1) $A$ — частичный предел $\{a_n\}$; (2) $\forall\varepsilon\gt0$ в $U_\varepsilon(A)$ лежат значения бесконечного набора членов; (3) $\forall\varepsilon\gt0\ \forall N\ \exists n\ge N:\ a_n\in U_\varepsilon(A)$.</div>
+<div class="pf lazy">
+<p><b>(1)⇒(2).</b> $a_{n_k}\to A$: $\forall\varepsilon\ \exists K\ \forall k\ge K:\ a_{n_k}\in U_\varepsilon(A)$. Номера $n_K,n_{K+1},\dots$ различны, и их бесконечно много.</p>
+<p><b>(2)⇒(3).</b> Фиксируем $\varepsilon$ и $N$. Номеров $n$ с $a_n\in U_\varepsilon(A)$ бесконечно много, а номеров $n\lt N$ конечное число. Значит, среди первых найдётся $n\ge N$.</p>
+<p><b>(3)⇒(1).</b> Обозначим через $n(\varepsilon,N)$ номер из (3). Строим $n_k$:</p>
+<ul><li>$n_1=n(1,1)$;</li>
+<li>$n_k=n\!\left(\frac1k,\ n_{k-1}+1\right)$, тогда $n_k\ge n_{k-1}+1\gt n_{k-1}$ и $a_{n_k}\in U_{1/k}(A)$.</li></ul>
+<p>$\{n_k\}$ строго возрастает. Проверим $a_{n_k}\to A$: для $\varepsilon\gt0$ возьмём $K\gt\frac1\varepsilon$ (Архимед). При $k\ge K$: $\frac1k\lt\varepsilon$, значит $U_{1/k}(A)\subset U_\varepsilon(A)$ (для конечного $A$ интервал уже; для $A=+\infty$: $(k,+\infty)\subset(\frac1\varepsilon,+\infty)$). Поэтому $a_{n_k}\in U_\varepsilon(A)$.</p>
+</div></div>
+
+<div class="it"><div class="hd"><span class="tg">Лекции §8, Теорема 1</span><span class="nm">Принцип вложенных отрезков (Кантор)</span></div>
+<div class="st">Если $[a_{n+1},b_{n+1}]\subset[a_n,b_n]$ при всех $n$, то у всех отрезков есть общая точка.</div>
+<div class="pf lazy">
+<p>Из вложенности: $a_n\le a_{n+1}\le b_{n+1}\le b_n$. $A=\{a_n\}$ — левые концы, $B=\{b_n\}$ — правые.</p>
+<p><b>Каждый левый конец $\le$ каждого правого:</b> возьмём $a_k$ и $b_m$.</p>
+<ul><li>Если $k\le m$: $a_k\le a_m\le b_m$ ($a_n$ возрастают).</li>
+<li>Если $k\gt m$: $a_k\le b_k\le b_m$ ($b_n$ убывают).</li></ul>
+<p>По аксиоме непрерывности $\exists c:\ a_k\le c\le b_m$ для всех $k,m$. В частности, $a_n\le c\le b_n$, то есть $c\in[a_n,b_n]$ при всех $n$.</p>
+</div></div>
+
+<div class="it"><div class="hd"><span class="tg">Лекции §8, Теорема 2</span><span class="nm">Стягивающиеся отрезки: общая точка единственна</span></div>
+<div class="st">Если вдобавок $b_n-a_n\to0$, то общая точка единственна.</div>
+<div class="pf lazy">
+<p>Существование — по теореме 1. Пусть $x,y$ — общие точки. Обе лежат в $[a_n,b_n]$, поэтому $0\le|x-y|\le b_n-a_n$ при всех $n$. Переходим к пределу в неравенстве: $|x-y|\le0$, значит $x=y$.</p>
+</div></div>
+
+<div class="it"><div class="hd"><span class="tg">Лекции §9, Теорема 2</span><span class="nm">Теорема Больцано–Вейерштрасса</span></div>
+<div class="st">Ограниченная последовательность имеет хотя бы один конечный частичный предел.</div>
+<div class="pf lazy">
+<p>$\forall n:\ x_n\in[a_0,b_0]$. <b>Деление пополам:</b> $c_0=\frac{a_0+b_0}2$. Если в $[a_0,c_0]$ лежат значения бесконечного набора членов, берём $[a_1,b_1]=[a_0,c_0]$; иначе бесконечный набор попадает в $[c_0,b_0]$ (две половины покрывают всё), и берём его.</p>
+<p>Продолжая так же, получаем вложенные отрезки $[a_k,b_k]$; каждый содержит значения бесконечного набора членов, и $b_k-a_k=\frac{b_0-a_0}{2^k}$.</p>
+<p>По принципу Кантора $\exists x\in\bigcap_k[a_k,b_k]$.</p>
+<p><b>$x$ — частичный предел.</b> $\frac{b_0-a_0}{2^k}\to0$ (так как $(\frac12)^k\to0$). Для $\varepsilon\gt0$ найдётся $k$ с $b_k-a_k\lt\varepsilon$. Для любого $y\in[a_k,b_k]$: $|y-x|\le b_k-a_k\lt\varepsilon$, то есть $[a_k,b_k]\subset U_\varepsilon(x)$. Значит, $U_\varepsilon(x)$ содержит значения бесконечного набора членов, и по критерию (2) $x$ — частичный предел. И он конечен, так как $x\in[a_0,b_0]$.</p>
+</div></div>
+
+<div class="it"><div class="hd"><span class="tg">Лекции §9, Лемма 1</span><span class="nm">Неограниченная ⇒ $\pm\infty$ — частичный предел</span></div>
+<div class="st">Если $\{x_n\}$ неограничена сверху, то $+\infty$ — её частичный предел (снизу — $-\infty$).</div>
+<div class="pf lazy">
+<p><b>Для любого $N$ «хвост» $\{x_n:\ n\ge N\}$ тоже неограничен сверху.</b> Иначе, если $x_n\le M'$ при $n\ge N$, то $x_n\le\max\{x_1,\dots,x_{N-1},M'\}$ при всех $n$ — противоречие.</p>
+<p>Значит, $\forall\varepsilon\gt0\ \forall N\ \exists n\ge N:\ x_n\gt\frac1\varepsilon$, то есть $x_n\in U_\varepsilon(+\infty)$. Это условие (3) критерия, поэтому $+\infty$ — частичный предел.</p>
+</div></div>
+
+<div class="it"><div class="hd"><span class="tg">Лекции §9, Теорема 3</span><span class="nm">Обобщённая теорема Больцано–Вейерштрасса</span></div>
+<div class="st">Любая последовательность имеет частичный предел в $\overline{\mathbb R}$.</div>
+<div class="pf lazy">
+<p>Если ограничена — Больцано–Вейерштрасс (есть конечный). Если неограничена сверху — лемма 1 ($+\infty$). Если неограничена снизу — $-\infty$.</p>
+</div></div>
+
+<div class="it"><div class="hd"><span class="tg">Лекции §9, Теорема 4</span><span class="nm">Предел ⇔ единственный частичный предел</span></div>
+<div class="st">Для $A\in\overline{\mathbb R}$: $\lim a_n=A\iff A$ — единственный частичный предел $\{a_n\}$ (в $\overline{\mathbb R}$).</div>
+<div class="pf lazy">
+<p><b>⇒.</b> Любая подпоследовательность стремится к $A$ (первый пункт этого раздела), поэтому других частичных пределов нет.</p>
+<p><b>⇐.</b> От противного: $A$ единственный, но $a_n\not\to A$:</p>
+$$\exists\varepsilon\gt0\ \forall N\ \exists n\ge N:\ a_n\notin U_\varepsilon(A).\qquad(*)$$
+<p>Строим подпоследовательность, все члены которой вне $U_\varepsilon(A)$: $n_1$ берём из $(*)$ с $N=1$, а $n_k$ из $(*)$ с $N=n_{k-1}+1$.</p>
+<p>По обобщённой теореме Б–В у $\{a_{n_k}\}$ есть частичный предел $B\in\overline{\mathbb R}$, и он же частичный предел $\{a_n\}$ (подпоследовательность подпоследовательности — подпоследовательность).</p>
+<p>Остаётся показать $B\ne A$. Если бы $B=A$, то по критерию в $U_\varepsilon(A)$ попадали бы члены $\{a_{n_k}\}$, а они все вне неё. Значит, $B\ne A$ — второй частичный предел, противоречие.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп.</span><span class="nm">Чётные и нечётные к одному пределу ⇒ вся сходится</span></div>
+<div class="st">Если $a_{2k}\to A$ и $a_{2k-1}\to A$, то $a_n\to A$.</div>
+<div class="pf lazy">
+<p>Для $\varepsilon\gt0$: $\exists K_1\ \forall k\ge K_1:\ a_{2k}\in U_\varepsilon(A)$; $\exists K_2\ \forall k\ge K_2:\ a_{2k-1}\in U_\varepsilon(A)$. Пусть $K=\max\{K_1,K_2\}$, $N=2K$.</p>
+<p>Пусть $n\ge N$. Если $n=2k$, то $k=\frac n2\ge K\ge K_1$. Если $n=2k-1$, то $k=\frac{n+1}2\gt K\ge K_2$. В обоих случаях $a_n\in U_\varepsilon(A)$.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп.</span><span class="nm">У любой последовательности есть монотонная подпоследовательность (+ второе доказательство Б–В)</span></div>
+<div class="st">Из любой последовательности можно выделить монотонную подпоследовательность. Следствие: ещё одно доказательство теоремы Больцано–Вейерштрасса.</div>
+<div class="pf lazy">
+<p>Назовём номер $m$ <b>пиком</b>, если $a_m\ge a_n$ для всех $n\gt m$.</p>
+<p><b>Пиков бесконечно много:</b> $m_1\lt m_2\lt\dots$. Так как $m_k$ — пик и $m_{k+1}\gt m_k$, то $a_{m_k}\ge a_{m_{k+1}}$. Получили невозрастающую подпоследовательность.</p>
+<p><b>Пиков конечное число:</b> пусть $n_1$ больше всех пиков. $n_1$ не пик $\Rightarrow\exists n_2\gt n_1:\ a_{n_2}\gt a_{n_1}$. $n_2$ тоже не пик (он больше всех пиков) $\Rightarrow\exists n_3\gt n_2:\ a_{n_3}\gt a_{n_2}$, и так далее. Получили строго возрастающую подпоследовательность.</p>
+<p><b>Б–В:</b> если $\{a_n\}$ ограничена, её монотонная подпоследовательность тоже ограничена и по Вейерштрассу сходится к конечному пределу.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп.</span><span class="nm">Монотонная со сходящейся подпоследовательностью сходится</span></div>
+<div class="st">Если $\{a_n\}$ монотонна и $a_{n_k}\to A\in\mathbb R$, то $a_n\to A$.</div>
+<div class="pf lazy">
+<p>По следствию из теоремы Вейерштрасса $\exists\lim a_n=L\in\overline{\mathbb R}$. Подпоследовательность стремится к тому же пределу: $a_{n_k}\to L$. По единственности $L=A\in\mathbb R$.</p>
+</div></div>
+</section>
+
+<!-- ============ 12 ============ -->
+<section id="s12" data-t="Критерий Коши">
+<h2>12. Фундаментальные последовательности. Критерий Коши</h2>
+<div class="defs"><p><b>Фундаментальная:</b> $\forall\varepsilon\gt0\ \exists N\ \forall n,m\ge N:\ |x_n-x_m|\lt\varepsilon$.</p></div>
+
+<div class="it"><div class="hd"><span class="tg">Лекции §10, Лемма 1</span><span class="nm">Сходящаяся ⇒ фундаментальна</span></div>
+<div class="st">Если $x_n\to x\in\mathbb R$, то $\{x_n\}$ фундаментальна.</div>
+<div class="pf lazy">
+<p>Для $\varepsilon\gt0$: $\exists N\ \forall n\ge N:\ |x_n-x|\lt\frac\varepsilon2$. При $n,m\ge N$:</p>
+$$|x_n-x_m|=|(x_n-x)+(x-x_m)|\le|x_n-x|+|x_m-x|\lt\tfrac\varepsilon2+\tfrac\varepsilon2=\varepsilon.$$
+</div></div>
+
+<div class="it"><div class="hd"><span class="tg">Лекции §10, Лемма 2</span><span class="nm">Фундаментальная ⇒ ограничена</span></div>
+<div class="st">Фундаментальная последовательность ограничена.</div>
+<div class="pf lazy">
+<p>$\varepsilon=1$: $\exists N\ \forall n,m\ge N:\ |x_n-x_m|\lt1$. При $m=N$: $|x_n-x_N|\lt1$, значит $|x_n|\le|x_n-x_N|+|x_N|\lt|x_N|+1$ при $n\ge N$.</p>
+<p>$M=\max\{|x_1|,\dots,|x_{N-1}|,\ |x_N|+1\}$, тогда $|x_n|\le M$ при всех $n$.</p>
+</div></div>
+
+<div class="it"><div class="hd"><span class="tg">Лекции §10, Теорема 1</span><span class="nm">Критерий Коши</span></div>
+<div class="st">$\{x_n\}$ сходится $\iff\{x_n\}$ фундаментальна.</div>
+<div class="pf lazy">
+<p><b>⇒</b> — лемма 1.</p>
+<p><b>⇐.</b> По лемме 2 $\{x_n\}$ ограничена, по Больцано–Вейерштрассу у неё есть конечный частичный предел $x$. Докажем $x_n\to x$.</p>
+<p>Возьмём $\varepsilon\gt0$. Фундаментальность с $\frac\varepsilon2$: $\exists N\ \forall n,m\ge N:\ |x_n-x_m|\lt\frac\varepsilon2$.</p>
+<p>По критерию частичного предела (условие 3) $\exists m\ge N:\ |x_m-x|\lt\frac\varepsilon2$. Тогда для любого $n\ge N$:</p>
+$$|x_n-x|\le|x_n-x_m|+|x_m-x|\lt\tfrac\varepsilon2+\tfrac\varepsilon2=\varepsilon.$$
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп.</span><span class="nm">Гармонический ряд: $H_n=\sum_{k=1}^n\frac1k$ расходится</span></div>
+<div class="st">$H_n=1+\frac12+\dots+\frac1n$ не фундаментальна, значит расходится (на самом деле $H_n\to+\infty$).</div>
+<div class="pf lazy">
+<p>Отрицание фундаментальности: $\exists\varepsilon\ \forall N\ \exists n,m\ge N:\ |H_n-H_m|\ge\varepsilon$.</p>
+<p>Возьмём $\varepsilon=\frac12$ и для любого $N$ положим $n=2N$, $m=N$:</p>
+$$H_{2N}-H_N=\sum_{k=N+1}^{2N}\frac1k\ge N\cdot\frac1{2N}=\frac12$$
+<p>($N$ слагаемых, каждое $\ge\frac1{2N}$). По критерию Коши $H_n$ расходится. $H_n$ возрастает, поэтому (Вейерштрасс) $H_n\to+\infty$.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп.</span><span class="nm">$|x_{n+1}-x_n|\to0$ не даёт фундаментальности</span></div>
+<div class="st">Из $x_{n+1}-x_n\to0$ не следует, что $\{x_n\}$ фундаментальна.</div>
+<div class="pf lazy">
+<p>$x_n=\sqrt n$: $\sqrt{n+1}-\sqrt n=\frac1{\sqrt{n+1}+\sqrt n}\le\frac1{2\sqrt n}\to0$. Но $\sqrt n$ неограничена (для любого $M$ при $n\gt M^2$ $\sqrt n\gt M$), а фундаментальная ограничена — значит, $\sqrt n$ не фундаментальна.</p>
+<p>Другой пример — $H_n$: $H_{n+1}-H_n=\frac1{n+1}\to0$.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп.</span><span class="nm">$\sum\frac1{k^2}$ сходится (через Коши)</span></div>
+<div class="st">$x_n=\sum\limits_{k=1}^n\frac1{k^2}$ фундаментальна, значит сходится.</div>
+<div class="pf lazy">
+<p>При $k\ge2$: $\frac1{k^2}\lt\frac1{k(k-1)}=\frac1{k-1}-\frac1k$. Для $m\gt n$ сумма телескопируется:</p>
+$$0\lt x_m-x_n=\sum_{k=n+1}^m\frac1{k^2}\lt\sum_{k=n+1}^m\left(\frac1{k-1}-\frac1k\right)=\frac1n-\frac1m\lt\frac1n.$$
+<p>Для $\varepsilon\gt0$ берём $N\gt\frac1\varepsilon$. При $m\gt n\ge N$: $|x_m-x_n|\lt\frac1n\le\frac1N\lt\varepsilon$ (случай $m=n$ тривиален).</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп.</span><span class="nm">«Сжимающая» последовательность фундаментальна</span></div>
+<div class="st">Если $\exists q\in(0,1)$: $|x_{n+1}-x_n|\le q\,|x_n-x_{n-1}|$ при всех $n\ge2$, то $\{x_n\}$ фундаментальна (и сходится).</div>
+<div class="pf lazy">
+<p>Пусть $d=|x_2-x_1|$. Индукцией: $|x_{k+1}-x_k|\le q^{k-1}d$.</p>
+<p>Для $m\gt n$ — неравенство треугольника и сумма прогрессии:</p>
+$$|x_m-x_n|\le\sum_{k=n}^{m-1}|x_{k+1}-x_k|\le d\sum_{k=n}^{m-1}q^{k-1}\le d\,q^{n-1}\sum_{j=0}^{\infty}q^j=\frac{d\,q^{n-1}}{1-q}.$$
+<p>(Конечная сумма: $q^{n-1}(1+q+\dots+q^{m-1-n})=q^{n-1}\frac{1-q^{m-n}}{1-q}\le\frac{q^{n-1}}{1-q}$.)</p>
+<p>$q^{n-1}\to0$, поэтому для $\varepsilon\gt0$ найдётся $N$ с $\frac{d\,q^{N-1}}{1-q}\lt\varepsilon$, и при $m\gt n\ge N$: $|x_m-x_n|\lt\varepsilon$ ($q^{n-1}\le q^{N-1}$).</p>
+</div></div>
+
+<div class="it"><div class="hd"><span class="tg">Лекции §10, Пример</span><span class="nm">Хитрое условие равносильно сходимости</span></div>
+<div class="st">Условие (б) $\forall\varepsilon\gt0\ \exists x\in\mathbb R\ \exists N\ \forall n\ge N:\ |x_n-x|\lt\varepsilon$ равносильно сходимости $\{x_n\}$.</div>
+<div class="pf lazy">
+<p><b>Сходимость ⇒ (б):</b> сходимость — это $\exists x\ \forall\varepsilon\dots$, а $\exists x\ \forall\varepsilon\Rightarrow\forall\varepsilon\ \exists x$ (раздел 1).</p>
+<p><b>(б) ⇒ сходимость:</b> при $n,m\ge N$: $|x_n-x_m|\le|x_n-x|+|x_m-x|\lt2\varepsilon$. Так как $\varepsilon$ произвольно, последовательность фундаментальна, а по критерию Коши сходится.</p>
+</div></div>
+</section>
+
+<!-- ============ 13 ============ -->
+<section id="s13" data-t="Функции, предел функции">
+<h2>13. Функции. Предел функции по Коши и по Гейне</h2>
+<div class="defs">
+<p><b>По Коши:</b> $\lim\limits_{x\to x_0}f(x)=A$, если $\forall\varepsilon\gt0\ \exists\delta\in(0,\delta_0]\ \forall x\in\mathring U_\delta(x_0):\ f(x)\in U_\varepsilon(A)$. Для конечных: $0\lt|x-x_0|\lt\delta\Rightarrow|f(x)-A|\lt\varepsilon$.</p>
+<p><b>По Гейне:</b> для любой $\{x_n\}\subset X$ с $x_n\to x_0$, $x_n\ne x_0$, выполнено $f(x_n)\to A$.</p>
+<p><b>Инъекция:</b> $f(x_1)=f(x_2)\Rightarrow x_1=x_2$. <b>Сюръекция:</b> $\forall y\in Y\ \exists x:\ f(x)=y$. <b>Биекция:</b> и то и другое.</p>
+</div>
+
+<div class="it"><div class="hd"><span class="tg">Лекции гл.2 §1, Теорема 1</span><span class="nm">Эквивалентность определений по Коши и по Гейне</span></div>
+<div class="st">Пусть $f:X\to\mathbb R$, $x_0,A\in\overline{\mathbb R}$, $\mathring U_{\delta_0}(x_0)\subset X$. Тогда $\lim\limits_{x\to x_0}f(x)=A$ по Коши $\iff$ по Гейне.</div>
+<div class="pf lazy">
+<p><b>Коши ⇒ Гейне.</b> Пусть $\{x_n\}$ — последовательность Гейне. Возьмём $\varepsilon\gt0$, по Коши найдём $\delta$. Так как $x_n\to x_0$, $\exists N\ \forall n\ge N:\ x_n\in U_\delta(x_0)$, а так как $x_n\ne x_0$, то $x_n\in\mathring U_\delta(x_0)$. По Коши $f(x_n)\in U_\varepsilon(A)$ при $n\ge N$, то есть $f(x_n)\to A$.</p>
+<p><b>Гейне ⇒ Коши</b> (от противного). Пусть по Гейне предел $A$, а по Коши — нет:</p>
+$$\exists\varepsilon\gt0\ \forall\delta\in(0,\delta_0]\ \exists x\in\mathring U_\delta(x_0):\ f(x)\notin U_\varepsilon(A).$$
+<p>Подставим $\delta=\frac{\delta_0}n$: для каждого $n$ найдётся $x_n\in\mathring U_{\delta_0/n}(x_0)$ с $f(x_n)\notin U_\varepsilon(A)$.</p>
+<ul><li>$x_n\in X$, так как $\mathring U_{\delta_0/n}\subset\mathring U_{\delta_0}\subset X$.</li>
+<li>$x_n\ne x_0$ (окрестность проколотая).</li>
+<li>$x_n\to x_0$: для конечного $x_0$ $|x_n-x_0|\lt\frac{\delta_0}n\to0$; для $x_0=+\infty$ $x_n\gt\frac n{\delta_0}\to+\infty$.</li></ul>
+<p>Получили последовательность Гейне, у которой все $f(x_n)\notin U_\varepsilon(A)$, то есть $f(x_n)\not\to A$ — противоречие с определением по Гейне.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп.</span><span class="nm">По определению: $\lim\limits_{x\to2}x^2=4$</span></div>
+<div class="st">Докажи по Коши, что $\lim\limits_{x\to2}x^2=4$.</div>
+<div class="pf lazy">
+<p>$|x^2-4|=|x-2|\cdot|x+2|$. Ограничим второй множитель: если $|x-2|\lt1$, то $1\lt x\lt3$ и $|x+2|\lt5$.</p>
+<p>Для $\varepsilon\gt0$ положим $\delta=\min\{1,\frac\varepsilon5\}$. Если $0\lt|x-2|\lt\delta$, то $|x+2|\lt5$ и $|x^2-4|\lt\frac\varepsilon5\cdot5=\varepsilon$.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп.</span><span class="nm">Единственность и арифметика предела функции (через Гейне)</span></div>
+<div class="st">Предел функции единственен. Если $f\to A$, $g\to B$ при $x\to x_0$, то $f\pm g\to A\pm B$, $fg\to AB$, а $\frac fg\to\frac AB$ при $B\ne0$ и $g\ne0$ около $x_0$.</div>
+<div class="pf lazy">
+<p><b>Единственность</b> (для конечного $x_0$). $x_n=x_0+\frac{\delta_0}{n+1}$ — последовательность Гейне: она лежит в $\mathring U_{\delta_0}(x_0)$, $x_n\ne x_0$, $x_n\to x_0$. Если $A$ и $B$ — пределы, то $f(x_n)\to A$ и $f(x_n)\to B$, и по единственности предела последовательности $A=B$.</p>
+<p><b>Арифметика.</b> Возьмём любую последовательность Гейне $x_n$. По Гейне $f(x_n)\to A$, $g(x_n)\to B$. По теоремам §4 $f(x_n)+g(x_n)\to A+B$ (и аналогично для остальных). Так как $x_n$ любая, $f+g\to A+B$ по Гейне, а значит и по Коши.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп.</span><span class="nm">$\sin\frac1x$ не имеет предела в 0</span></div>
+<div class="st">$\lim\limits_{x\to0}\sin\frac1x$ не существует (ни конечный, ни бесконечный).</div>
+<div class="pf lazy">
+<p>Две последовательности Гейне в точке 0:</p>
+<ul><li>$x_n=\frac1{\pi n}\to0$, $x_n\ne0$: $\sin\frac1{x_n}=\sin\pi n=0\to0$;</li>
+<li>$x_n'=\frac1{\frac\pi2+2\pi n}\to0$, $x_n'\ne0$: $\sin\frac1{x'_n}=\sin\left(\frac\pi2+2\pi n\right)=1\to1$.</li></ul>
+<p>Если бы предел $A\in\overline{\mathbb R}$ существовал, по Гейне было бы $A=0$ и $A=1$. Противоречие.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп.</span><span class="nm">Функция Дирихле не имеет предела ни в одной точке</span></div>
+<div class="st">$D(x)=1$ при $x\in\mathbb Q$, $D(x)=0$ при $x\notin\mathbb Q$. Ни в одной точке $x_0\in\mathbb R$ предела нет.</div>
+<div class="pf lazy">
+<p>По плотности $\mathbb Q$ (раздел 8) для каждого $n$ найдётся рациональное $r_n\in(x_0,x_0+\frac1n)$ и иррациональное $s_n\in(x_0,x_0+\frac1n)$.</p>
+<p>Обе последовательности — Гейне: $\ne x_0$, и $|r_n-x_0|\lt\frac1n\to0$. Но $D(r_n)=1\to1$, а $D(s_n)=0\to0$. По Гейне предела нет.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп.</span><span class="nm">Определение инъекции из лекций ⇔ $f(x_1)=f(x_2)\Rightarrow x_1=x_2$</span></div>
+<div class="st">В лекциях: $f$ инъективна, если обратное соответствие $f^{-1}$ однозначно. Это равносильно: $f(x_1)=f(x_2)\Rightarrow x_1=x_2$.</div>
+<div class="pf lazy">
+<p>График обратного соответствия: $G_{f^{-1}}=\{(y,x):\ (x,y)\in G_f\}=\{(f(x),x)\}$.</p>
+<p>Однозначность $f^{-1}$: если $(y,x_1),(y,x_2)\in G_{f^{-1}}$, то $x_1=x_2$. Это значит: если $f(x_1)=y=f(x_2)$, то $x_1=x_2$ — то же самое условие.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп.</span><span class="nm">Композиция инъекций/сюръекций</span></div>
+<div class="st">Пусть $f:X\to Y$, $g:Y\to Z$. Если $f,g$ инъективны, то и $g\circ f$ инъективна; если обе сюръективны, то и $g\circ f$ сюръективна. Следовательно, композиция биекций — биекция.</div>
+<div class="pf lazy">
+<p><b>Инъекция:</b> $g(f(x_1))=g(f(x_2))\overset{g\text{ инъект.}}\Longrightarrow f(x_1)=f(x_2)\overset{f\text{ инъект.}}\Longrightarrow x_1=x_2$.</p>
+<p><b>Сюръекция:</b> возьмём $z\in Z$. $g$ сюръективна $\Rightarrow\exists y:\ g(y)=z$; $f$ сюръективна $\Rightarrow\exists x:\ f(x)=y$. Тогда $g(f(x))=z$.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ доп.</span><span class="nm">Биекция ⇔ существует обратная функция</span></div>
+<div class="st">$f:X\to Y$ — биекция $\iff\exists g:Y\to X$: $g(f(x))=x\ \forall x\in X$ и $f(g(y))=y\ \forall y\in Y$.</div>
+<div class="pf lazy">
+<p><b>⇒.</b> Для $y\in Y$ по сюръективности есть $x$ с $f(x)=y$, и по инъективности он единственный. Положим $g(y)=x$. Тогда $f(g(y))=y$ по построению. А $g(f(x))$ — единственный $x'$ с $f(x')=f(x)$; сам $x$ подходит, значит $g(f(x))=x$.</p>
+<p><b>⇐.</b> Инъективность: $f(x_1)=f(x_2)\Rightarrow g(f(x_1))=g(f(x_2))\Rightarrow x_1=x_2$. Сюръективность: для $y$ берём $x=g(y)$, тогда $f(x)=y$.</p>
+</div></div>
+</section>
+
+<!-- ============ 14 ============ -->
+<section id="s14" data-t="Сверх программы (2024)">
+<h2>14. Сверх программы 2026: было в программе 2024</h2>
+<div class="defs"><p>В программе коллоквиума 2024 года ещё были постоянная Эйлера, предельная точка, верхний и нижний пределы, а также неравенства и зажатая функция для пределов функций. В программе 2026 их нет, но на коллоквиуме их могут спросить как дополнительный вопрос.</p></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ 2024</span><span class="nm">Оценка $\frac1{n+1}\lt\ln\left(1+\frac1n\right)\lt\frac1n$</span></div>
+<div class="st">Для всех $n\in\mathbb N$: $\frac1{n+1}\lt\ln\left(1+\frac1n\right)\lt\frac1n$.</div>
+<div class="pf lazy">
+<p>Двойная оценка для $e$ (раздел 10): $\left(1+\frac1n\right)^n\lt e\lt\left(1+\frac1n\right)^{n+1}$. Логарифм возрастает, применяем его ко всем частям:</p>
+$$n\ln\left(1+\tfrac1n\right)\lt1\lt(n+1)\ln\left(1+\tfrac1n\right).$$
+<p>Делим левое неравенство на $n$, правое на $n+1$.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ 2024</span><span class="nm">Постоянная Эйлера</span></div>
+<div class="st">Последовательность $\gamma_n=1+\frac12+\dots+\frac1n-\ln n$ сходится. Её предел $\gamma\approx0{,}5772$ — постоянная Эйлера, причём $0\le\gamma\lt1$.</div>
+<div class="pf lazy">
+<p><b>Убывает:</b> по оценке логарифма из предыдущей карточки</p>
+$$\gamma_{n+1}-\gamma_n=\frac1{n+1}-\big(\ln(n+1)-\ln n\big)=\frac1{n+1}-\ln\left(1+\frac1n\right)\lt0.$$
+<p><b>Ограничена снизу нулём:</b> по той же оценке $\frac1k\gt\ln\left(1+\frac1k\right)=\ln(k+1)-\ln k$. Суммируем по $k=1..n$, сумма справа телескопируется:</p>
+$$H_n=\sum_{k=1}^n\frac1k\gt\ln(n+1)-\ln1=\ln(n+1)\gt\ln n\ \Rightarrow\ \gamma_n\gt0.$$
+<p>По Вейерштрассу $\gamma=\lim\gamma_n$ существует; $\gamma\ge0$, а из строгого убывания $\gamma\lt\gamma_1=1$.</p>
+<p class="note">Следствие: $H_n=\ln n+\gamma+\alpha_n$, где $\alpha_n$ б.м. Отсюда снова $H_n\to+\infty$.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ (конспект 2024)</span><span class="nm">$e=\sum_{k=0}^\infty\frac1{k!}$</span></div>
+<div class="st">$s_n=\sum\limits_{k=0}^n\frac1{k!}\to e$.</div>
+<div class="pf lazy">
+<p>Обозначим $y_n=\left(1+\frac1n\right)^n$. Из раздела 10:</p>
+$$y_n=\sum_{k=0}^n\frac1{k!}\prod_{j=0}^{k-1}\left(1-\frac jn\right)\le s_n\lt3.$$
+<p>$s_n$ возрастает и ограничена, поэтому $s_n\to S$. Переходя к пределу в $y_n\le s_n$, получаем $e\le S$.</p>
+<p><b>Обратно.</b> Фиксируем $m$. При $n\ge m$ отбросим слагаемые с $k\gt m$ (они неотрицательны):</p>
+$$y_n\ge\sum_{k=0}^m\frac1{k!}\prod_{j=0}^{k-1}\left(1-\frac jn\right).$$
+<p>При $n\to\infty$ справа конечная (из $m+1$ слагаемых) сумма произведений, где каждый множитель $1-\frac jn\to1$. Поэтому правая часть $\to s_m$, и в пределе $e\ge s_m$. Это верно для любого $m$, значит $S=\lim s_m\le e$. Итого $S=e$.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ 2024</span><span class="nm">Предельная точка ⇔ частичный предел</span></div>
+<div class="st"><b>Предельная точка</b> $\{a_n\}$ — число $a$, в любой $\varepsilon$-окрестности которого лежит бесконечно много членов (то есть бесконечно много номеров $n$ с $a_n\in U_\varepsilon(a)$). Утверждение: $a$ — предельная точка $\iff a$ — частичный предел.</div>
+<div class="pf lazy">
+<p>Это условие (2) критерия частичного предела (лекции §9, Т1, раздел 11). Короткое доказательство:</p>
+<p><b>⇐.</b> $a_{n_k}\to a$: для $\varepsilon\gt0$ при всех $k\ge K$ $a_{n_k}\in U_\varepsilon(a)$. Номера $n_K\lt n_{K+1}\lt\dots$ различны, их бесконечно много.</p>
+<p><b>⇒.</b> Строим $n_k$ по индукции: в $U_1(a)$ бесконечно много членов, берём любой $a_{n_1}$. Если $n_{k-1}$ уже выбран, в $U_{1/k}(a)$ бесконечно много членов, а номеров $\le n_{k-1}$ конечное число, поэтому есть $n_k\gt n_{k-1}$ с $a_{n_k}\in U_{1/k}(a)$. Тогда $a-\frac1k\lt a_{n_k}\lt a+\frac1k$, и по зажатой $a_{n_k}\to a$.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">Лекции §9, Лемма 2 · 2024</span><span class="nm">Верхний и нижний пределы — частичные пределы</span></div>
+<div class="st">$L$ — множество всех частичных пределов $\{x_n\}$ в $\overline{\mathbb R}$ (оно непусто по обобщённой теореме Б–В). Определяем $\varlimsup x_n=\sup L$ и $\varliminf x_n=\inf L$. Утверждение: $\varlimsup x_n\in L$ и $\varliminf x_n\in L$, то есть это наибольший и наименьший частичные пределы.</div>
+<div class="pf lazy">
+<p>Пусть $M=\sup L$, возьмём $\varepsilon\gt0$. По определению sup (в $\overline{\mathbb R}$) $\exists x\in L:\ x\in U_\varepsilon(M)$.</p>
+<p>Подберём $\varepsilon'\gt0$ так, чтобы $U_{\varepsilon'}(x)\subset U_\varepsilon(M)$:</p>
+<ul><li>$M,x\in\mathbb R$: $\varepsilon'=\varepsilon-|M-x|\gt0$. Если $|y-x|\lt\varepsilon'$, то $|y-M|\le|y-x|+|x-M|\lt\varepsilon$.</li>
+<li>$M=+\infty$, $x\in\mathbb R$: $x\gt\frac1\varepsilon$, берём $\varepsilon'=x-\frac1\varepsilon$.</li>
+<li>$x=M=+\infty$: $\varepsilon'=\varepsilon$.</li></ul>
+<p>$x$ — частичный предел, поэтому в $U_{\varepsilon'}(x)$ бесконечно много членов, а значит и в $U_\varepsilon(M)$. Так как $\varepsilon$ любое, по критерию $M$ — частичный предел. Для $\inf$ аналогично.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ 2024</span><span class="nm">$\varlimsup x_n=\lim\limits_{n\to\infty}\sup\limits_{k\ge n}x_k$ (эквивалентность определений)</span></div>
+<div class="st">Для ограниченной $\{x_n\}$ положим $M_n=\sup\limits_{k\ge n}x_k$. Тогда $M_n$ сходится, и $\lim M_n=\max L=\varlimsup x_n$. Аналогично $\varliminf x_n=\lim\inf\limits_{k\ge n}x_k$.</div>
+<div class="pf lazy">
+<p><b>$M_n$ сходится.</b> $\{x_k:\ k\ge n+1\}\subset\{x_k:\ k\ge n\}$, поэтому по монотонности sup $M_{n+1}\le M_n$. Кроме того, $M_n\ge x_n\ge\inf x$. Убывает и ограничена снизу — по Вейерштрассу $M_n\to M^*$.</p>
+<p><b>Каждый частичный предел $\le M^*$.</b> Пусть $x_{n_k}\to A$. Так как $x_{n_k}$ входит в хвост с номера $n_k$, $x_{n_k}\le M_{n_k}$. При этом $M_{n_k}\to M^*$ (подпоследовательность сходящейся). Переходим к пределу: $A\le M^*$.</p>
+<p><b>$M^*$ — частичный предел.</b> Строим $n_k$: пусть $N_k=n_{k-1}+1$ (и $N_1=1$). По определению sup $\exists n_k\ge N_k:\ M_{N_k}-\frac1k\lt x_{n_k}\le M_{N_k}$. Номера $N_k$ строго возрастают, поэтому $M_{N_k}\to M^*$, и по зажатой $x_{n_k}\to M^*$.</p>
+<p>Итак, $M^*\in L$ и $M^*\ge$ всех элементов $L$, значит $M^*=\max L=\sup L$.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ 2024 (задача 1 §9)</span><span class="nm">Предел существует ⇔ $\varliminf=\varlimsup$</span></div>
+<div class="st">$\lim x_n=A\in\overline{\mathbb R}\iff\varliminf x_n=\varlimsup x_n=A$.</div>
+<div class="pf lazy">
+<p><b>⇒.</b> По теореме 4 §9 $A$ — единственный частичный предел: $L=\{A\}$, поэтому $\inf L=\sup L=A$.</p>
+<p><b>⇐.</b> Все частичные пределы лежат между $\inf L=A$ и $\sup L=A$, значит $L\subset\{A\}$. $L$ непусто, поэтому $L=\{A\}$: $A$ — единственный частичный предел, и по теореме 4 §9 $x_n\to A$.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ 2024</span><span class="nm">Предельный переход в неравенствах для функций</span></div>
+<div class="st">Пусть $f(x)\to A$, $g(x)\to B$ при $x\to x_0$ и $f(x)\le g(x)$ в некоторой проколотой окрестности $\mathring U_{\delta_1}(x_0)$. Тогда $A\le B$.</div>
+<div class="pf lazy">
+<p>Возьмём последовательность Гейне $x_n\to x_0$, $x_n\ne x_0$ (например, $x_0+\frac{\delta_1}{n+1}$). С некоторого номера $N$ $x_n\in\mathring U_{\delta_1}(x_0)$, поэтому $f(x_n)\le g(x_n)$ при $n\ge N$.</p>
+<p>По Гейне $f(x_n)\to A$, $g(x_n)\to B$. По предельному переходу для последовательностей $A\le B$.</p>
+</div></div>
+
+<div class="it add"><div class="hd"><span class="tg">★ 2024</span><span class="nm">Теорема о зажатой функции</span></div>
+<div class="st">Если $h(x)\le f(x)\le g(x)$ в $\mathring U_{\delta_1}(x_0)$ и $\lim\limits_{x\to x_0}h=\lim\limits_{x\to x_0}g=A$, то $\lim\limits_{x\to x_0}f=A$.</div>
+<div class="pf lazy">
+<p><b>Через Гейне.</b> Пусть $x_n\to x_0$, $x_n\ne x_0$. С некоторого номера $N$ $x_n\in\mathring U_{\delta_1}(x_0)$, поэтому $h(x_n)\le f(x_n)\le g(x_n)$. По Гейне $h(x_n)\to A$ и $g(x_n)\to A$, по теореме о зажатой последовательности $f(x_n)\to A$. Так как $x_n$ любая, $f\to A$.</p>
+<p><b>Через Коши</b> (для конечного $A$). Для $\varepsilon\gt0$ $\exists\delta_2:\ A-\varepsilon\lt h(x)$ и $\exists\delta_3:\ g(x)\lt A+\varepsilon$ в соответствующих проколотых окрестностях. При $\delta=\min\{\delta_1,\delta_2,\delta_3\}$ и $0\lt|x-x_0|\lt\delta$:</p>
+$$A-\varepsilon\lt h(x)\le f(x)\le g(x)\lt A+\varepsilon.$$
+</div></div>
+</section>
+
+<p class="note" style="margin-top:36px">Источники: Е. Иванов, «Лекции по математическому анализу», ч. 1 (§§1–10 гл. 1, §1 гл. 2, §3 гл. 3); программа коллоквиума 1 ДРИП 2026/27; билеты коллоквиума ПИ ФКН; конспекты коллоквиума 2024 (П. Агаркова и рукописные). Пункты ★ — дополнения, в лекциях их нет.</p>
+
+</main>
+<script>
+(function(){
+ var KEY='matan-colloq1-done',done={};
+ try{done=JSON.parse(localStorage.getItem(KEY)||'{}')||{}}catch(e){}
+ function save(){try{localStorage.setItem(KEY,JSON.stringify(done))}catch(e){}}
+ function typeset(el){if(window.__ready&&window.MathJax&&MathJax.typesetPromise){MathJax.typesetPromise([el]).catch(function(){})}else{window.__pend.push(el)}}
+ var CORE='s1-2 s1-4 s2-1 s3-1 s3-2 s3-3 s4-2 s4-3 s4-4 s4-6 s4-7 s4-11 s4-12 s4-14 s5-2 s5-3 s5-5 s5-6 s5-7 s5-8 s6-2 s6-4 s7-2 s7-3 s7-4 s7-5 s7-6 s7-8 s8-1 s8-2 s8-5 s9-1 s10-1 s10-2 s11-2 s11-3 s11-5 s12-1 s12-2 s12-3 s13-1'.split(' ');
+ var secs=document.querySelectorAll('main section'),toc=document.getElementById('toc'),all=[];
+ secs.forEach(function(sec,si){
+  var items=sec.querySelectorAll('.it'),sc=document.createElement('small');sec.querySelector('h2').appendChild(sc);sec._c=sc;sec._items=items;
+  var li=document.createElement('li'),a=document.createElement('a');a.href='#'+sec.id;a.textContent=(si+1)+'. '+sec.dataset.t;var sp=document.createElement('span');a.appendChild(sp);li.appendChild(a);toc.appendChild(li);sec._t=sp;
+  items.forEach(function(it,i){
+   var id=sec.id+'-'+(i+1);it.id=id;all.push(it);
+   if(CORE.indexOf(id)>=0){it.classList.add('core');var ct=document.createElement('span');ct.className='tg mn';ct.textContent='минимум';it.querySelector('.hd').appendChild(ct)}
+   var no=document.createElement('span');no.className='no';no.textContent=(si+1)+'.'+(i+1);it.querySelector('.hd').insertBefore(no,it.querySelector('.hd').firstChild);
+   var bar=document.createElement('div');bar.className='bar';var pf=it.querySelector('.pf');
+   if(pf){var b=document.createElement('button');b.className='btn';b.textContent='Показать доказательство';
+    b.onclick=function(){var o=it.classList.toggle('open');b.textContent=o?'Скрыть доказательство':'Показать доказательство';if(o&&pf.classList.contains('lazy')){pf.classList.remove('lazy');typeset(pf)}};bar.appendChild(b)}
+   var c=document.createElement('button');c.className='chk';
+   function paint(){var d=!!done[id];c.classList.toggle('on',d);it.classList.toggle('done',d);c.textContent=d?'✓ Доказал':'Доказал'}
+   c.onclick=function(){if(done[id])delete done[id];else done[id]=1;save();paint();upd()};paint();bar.appendChild(c);
+   it.querySelector('.st').after(bar);
+  });
+ });
+ function upd(){var n=0,c=0;all.forEach(function(it){if(done[it.id]){n++;if(it.classList.contains('core'))c++}});document.getElementById('pcnt').textContent=n+' / '+all.length+' · минимум '+c+' / '+CORE.length;document.getElementById('pbar').style.width=(all.length?100*n/all.length:0)+'%';
+  var oc=document.body.classList.contains('only-core');secs.forEach(function(sec){var k=0,t=0;sec._items.forEach(function(it){if(oc&&!it.classList.contains('core'))return;t++;if(done[it.id])k++});sec._c.textContent=k+' / '+t;sec._t.textContent=k+'/'+t;sec.style.display=(oc&&!t)?'none':'';sec._t.parentNode.parentNode.style.display=(oc&&!t)?'none':''})}
+ upd();
+ var cb=document.getElementById('fcore');cb.onclick=function(){var on=document.body.classList.toggle('only-core');cb.classList.toggle('on',on);try{localStorage.setItem(KEY+'-core',on?'1':'')}catch(e){}upd()};
+ try{if(localStorage.getItem(KEY+'-core')){document.body.classList.add('only-core');cb.classList.add('on');upd()}}catch(e){}
+ var fb=document.getElementById('fdone');fb.onclick=function(){var on=document.body.classList.toggle('hide-done');fb.classList.toggle('on',on)};
+})();
+</script>
+</body>
+</html>
